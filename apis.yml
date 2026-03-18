@@ -1,0 +1,19 @@
+aid: ciena
+url: https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/apis.yml
+apis:
+- aid: ciena:ciena-api
+  name: Ciena / Ribbon SDN Controller API
+  tags:
+  - Telecom
+  - SDN
+  - NETCONF
+  - Network
+  - Optical
+  image: https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/image.png
+  humanURL: https://www.ciena.com/
+  baseURL: https://api.ciena.example.com
+  properties:
+  - url: https://www.ciena.com/
+    type: Documentation
+  description: >-
+    Ciena and Ribbon Communications provide SDN (Software-Defined Networking) controllers for optical and packet networks. APIs use REST and NETCONF protocols to manage network topology, provision circuits, monitor performance, and automate network operations for telecom carriers.
