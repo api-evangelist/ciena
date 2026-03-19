@@ -1,0 +1,100 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "ciena": "https://api.blueplanet.com/schemas/",
+    "schema": "https://schema.org/",
+    "tmf": "https://www.tmforum.org/resources/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "NetworkService": {
+      "@id": "ciena:NetworkService",
+      "@type": "schema:Service"
+    },
+    "Node": {
+      "@id": "ciena:NetworkNode",
+      "@type": "schema:Thing"
+    },
+    "Link": {
+      "@id": "ciena:NetworkLink"
+    },
+    "Alarm": {
+      "@id": "ciena:NetworkAlarm",
+      "@type": "schema:Event"
+    },
+    "ServiceEndpoint": {
+      "@id": "ciena:ServiceEndpoint",
+      "@type": "schema:EntryPoint"
+    },
+
+    "id": "@id",
+    "name": "schema:name",
+    "description": "schema:description",
+    "serviceType": {
+      "@id": "ciena:serviceType"
+    },
+    "state": {
+      "@id": "ciena:operationalState"
+    },
+    "adminState": {
+      "@id": "ciena:administrativeState"
+    },
+    "bandwidth": {
+      "@id": "schema:amount"
+    },
+    "protectionType": {
+      "@id": "ciena:protectionScheme"
+    },
+    "endpoints": {
+      "@id": "ciena:hasEndpoint",
+      "@container": "@set"
+    },
+    "nodeId": {
+      "@id": "ciena:nodeReference"
+    },
+    "portId": {
+      "@id": "ciena:portReference"
+    },
+    "direction": {
+      "@id": "ciena:endpointDirection"
+    },
+    "vlanId": {
+      "@id": "ciena:vlanIdentifier",
+      "@type": "xsd:integer"
+    },
+    "severity": {
+      "@id": "ciena:alarmSeverity"
+    },
+    "raisedAt": {
+      "@id": "schema:startDate",
+      "@type": "xsd:dateTime"
+    },
+    "clearedAt": {
+      "@id": "schema:endDate",
+      "@type": "xsd:dateTime"
+    },
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updatedAt": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "ipAddress": {
+      "@id": "schema:ipAddressV4"
+    },
+    "location": {
+      "@id": "schema:location",
+      "@type": "schema:Place"
+    },
+    "latitude": {
+      "@id": "schema:latitude",
+      "@type": "xsd:double"
+    },
+    "longitude": {
+      "@id": "schema:longitude",
+      "@type": "xsd:double"
+    }
+  }
+}

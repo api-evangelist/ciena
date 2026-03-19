@@ -24,6 +24,8 @@ apis:
     type: Support
   - url: https://www.blueplanet.com/contact
     type: Contact
+  - url: https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/openapi/ciena-blue-planet-openapi.yml
+    type: OpenAPI
   description: >-
     Ciena Blue Planet provides open APIs for multi-layer SDN network management and automation. The platform supports TM Forum Open APIs, MEF Lifecycle Service Orchestration (LSO) APIs including Legato and Sonata, and integrates with ONAP policy frameworks. APIs enable network topology management, circuit provisioning, performance monitoring, and network operations automation for telecom carriers.
 - aid: ciena:mcp-api
@@ -62,6 +64,12 @@ apis:
 common:
 - url: https://www.ciena.com/
   type: Website
+- url: https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/openapi/ciena-blue-planet-openapi.yml
+  type: OpenAPI
+- url: https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/json-schema/ciena-network-service-schema.json
+  type: JSONSchema
+- url: https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/json-ld/ciena-context.jsonld
+  type: JSONLDContext
 - url: https://developer.blueplanet.com
   type: Portal
 - url: https://developer.ciena.com/

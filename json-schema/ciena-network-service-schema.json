@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.blueplanet.com/schemas/network-service",
+  "title": "Ciena Blue Planet Network Service",
+  "description": "Schema representing a provisioned network service on the Blue Planet SDN platform.",
+  "type": "object",
+  "required": ["id", "name", "serviceType", "state", "endpoints"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique service identifier (UUID)",
+      "format": "uuid"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable service name",
+      "maxLength": 255
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional service description"
+    },
+    "serviceType": {
+      "type": "string",
+      "description": "Service type designation",
+      "enum": ["EPL", "EVPL", "OTN_ODU", "WDM_OCH", "L3VPN", "SD_WAN"]
+    },
+    "state": {
+      "type": "string",
+      "description": "Current operational state of the service",
+      "enum": ["ACTIVE", "DEGRADED", "FAILED", "PROVISIONING", "DELETING", "INACTIVE"]
+    },
+    "adminState": {
+      "type": "string",
+      "description": "Administrative state",
+      "enum": ["UNLOCKED", "LOCKED", "SHUTTING_DOWN"]
+    },
+    "bandwidth": {
+      "type": "string",
+      "description": "Service bandwidth specification",
+      "examples": ["1G", "10G", "100G", "400G"]
+    },
+    "protectionType": {
+      "type": "string",
+      "description": "Service protection scheme",
+      "enum": ["UNPROTECTED", "PROTECTED_1PLUS1", "REROUTABLE", "RESTORABLE"]
+    },
+    "endpoints": {
+      "type": "array",
+      "description": "Service termination endpoints (A and Z ends)",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "$ref": "#/$defs/ServiceEndpoint"
+      }
+    },
+    "route": {
+      "type": "array",
+      "description": "Computed route through the network",
+      "items": {
+        "$ref": "#/$defs/RouteHop"
+      }
+    },
+    "customerInfo": {
+      "$ref": "#/$defs/CustomerInfo"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Service creation timestamp"
+    },
+    "provisionedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Service provisioning completion timestamp"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp"
+    },
+    "tags": {
+      "type": "object",
+      "description": "Custom key-value metadata tags",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "ServiceEndpoint": {
+      "type": "object",
+      "required": ["nodeId", "portId", "direction"],
+      "properties": {
+        "nodeId": {
+          "type": "string",
+          "description": "Network element identifier"
+        },
+        "portId": {
+          "type": "string",
+          "description": "Port/interface identifier on the node"
+        },
+        "direction": {
+          "type": "string",
+          "enum": ["A_END", "Z_END"]
+        },
+        "vlanId": {
+          "type": "integer",
+          "description": "VLAN identifier for Ethernet services",
+          "minimum": 1,
+          "maximum": 4094
+        },
+        "innerVlanId": {
+          "type": "integer",
+          "description": "Inner VLAN (Q-in-Q) identifier",
+          "minimum": 1,
+          "maximum": 4094
+        },
+        "bandwidth": {
+          "type": "string",
+          "description": "Endpoint bandwidth allocation"
+        }
+      }
+    },
+    "RouteHop": {
+      "type": "object",
+      "properties": {
+        "nodeId": {
+          "type": "string"
+        },
+        "linkId": {
+          "type": "string"
+        },
+        "hopOrder": {
+          "type": "integer"
+        }
+      }
+    },
+    "CustomerInfo": {
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "type": "string"
+        },
+        "customerName": {
+          "type": "string"
+        },
+        "serviceOrderId": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

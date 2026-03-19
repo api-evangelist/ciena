@@ -1,0 +1,582 @@
+openapi: 3.1.0
+info:
+  title: Ciena Blue Planet Open API
+  description: >-
+    Ciena Blue Planet provides open APIs for multi-layer SDN network management and automation.
+    The platform supports TM Forum Open APIs, MEF Lifecycle Service Orchestration (LSO) APIs
+    including Legato and Sonata, and integrates with ONAP policy frameworks. APIs enable network
+    topology management, circuit provisioning, performance monitoring, and network operations
+    automation for telecom carriers.
+  version: 1.0.0
+  contact:
+    name: Blue Planet Support
+    url: https://www.blueplanet.com/support
+  license:
+    name: Ciena Terms and Conditions
+    url: https://www.ciena.com/customers/terms-and-conditions
+servers:
+  - url: https://api.blueplanet.com/bpocore/market/api/v1
+    description: Blue Planet Production API
+security:
+  - oauth2: []
+tags:
+  - name: Topology
+    description: Network topology resources including nodes and links
+  - name: Services
+    description: Network service lifecycle management
+  - name: Performance
+    description: Performance monitoring and metrics
+  - name: Alarms
+    description: Network alarm and fault management
+  - name: Resources
+    description: Physical and logical network resources
+paths:
+  /topology/nodes:
+    get:
+      operationId: listTopologyNodes
+      summary: List network topology nodes
+      description: >-
+        Returns all network topology nodes (network elements) visible to the authenticated user.
+        Supports filtering by node type, administrative state, and operational state.
+      tags:
+        - Topology
+      parameters:
+        - name: type
+          in: query
+          description: Filter by node type
+          schema:
+            type: string
+            enum: [optical, packet, hybrid]
+        - name: adminState
+          in: query
+          description: Filter by administrative state
+          schema:
+            type: string
+            enum: [UNLOCKED, LOCKED, SHUTTING_DOWN]
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+            maximum: 1000
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of topology nodes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /topology/nodes/{nodeId}:
+    get:
+      operationId: getTopologyNode
+      summary: Get a specific network topology node
+      description: Returns detailed information for a single network topology node including its ports and interfaces.
+      tags:
+        - Topology
+      parameters:
+        - name: nodeId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique node identifier
+      responses:
+        '200':
+          description: Network topology node details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Node'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /topology/links:
+    get:
+      operationId: listTopologyLinks
+      summary: List network topology links
+      description: Returns all network topology links (connections between nodes) visible to the authenticated user.
+      tags:
+        - Topology
+      parameters:
+        - name: nodeId
+          in: query
+          description: Filter links connected to a specific node
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: Filter by link type
+          schema:
+            type: string
+            enum: [physical, logical, virtual]
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+      responses:
+        '200':
+          description: List of topology links
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinkList'
+  /services:
+    get:
+      operationId: listServices
+      summary: List provisioned network services
+      description: Returns all network services provisioned on the Blue Planet platform.
+      tags:
+        - Services
+      parameters:
+        - name: state
+          in: query
+          description: Filter by service state
+          schema:
+            type: string
+            enum: [ACTIVE, DEGRADED, FAILED, PROVISIONING, DELETING]
+        - name: serviceType
+          in: query
+          description: Filter by service type
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: List of network services
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceList'
+    post:
+      operationId: createService
+      summary: Create a new network service
+      description: >-
+        Provisions a new network service. Supports optical circuits, Ethernet services,
+        and virtual network services. Service creation is asynchronous; monitor the returned
+        service ID for completion status.
+      tags:
+        - Services
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceRequest'
+      responses:
+        '201':
+          description: Service creation accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '409':
+          description: Service with same name already exists
+  /services/{serviceId}:
+    get:
+      operationId: getService
+      summary: Get network service details
+      description: Returns the full specification and current status of a provisioned network service.
+      tags:
+        - Services
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Network service details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteService
+      summary: Delete a network service
+      description: Deprovisions and removes a network service. This operation is asynchronous.
+      tags:
+        - Services
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '202':
+          description: Service deletion accepted
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /performance/metrics:
+    get:
+      operationId: getPerformanceMetrics
+      summary: Retrieve network performance metrics
+      description: >-
+        Returns performance monitoring data for network elements or services including
+        OTN PM counters, Ethernet PM data, and optical performance parameters.
+      tags:
+        - Performance
+      parameters:
+        - name: resourceId
+          in: query
+          required: true
+          description: ID of the network resource to query metrics for
+          schema:
+            type: string
+        - name: metricType
+          in: query
+          description: Type of performance metric
+          schema:
+            type: string
+            enum: [interface, optical, otn, ethernet]
+        - name: granularity
+          in: query
+          description: Data granularity period
+          schema:
+            type: string
+            enum: [15min, 24hour]
+            default: 15min
+        - name: startTime
+          in: query
+          description: Start of query window (ISO 8601)
+          schema:
+            type: string
+            format: date-time
+        - name: endTime
+          in: query
+          description: End of query window (ISO 8601)
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Performance metric data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerformanceMetrics'
+  /alarms:
+    get:
+      operationId: listAlarms
+      summary: List network alarms
+      description: Returns active network alarms, faults, and conditions across all managed network elements.
+      tags:
+        - Alarms
+      parameters:
+        - name: severity
+          in: query
+          description: Filter by alarm severity
+          schema:
+            type: string
+            enum: [CRITICAL, MAJOR, MINOR, WARNING, NOT_ALARMED]
+        - name: resourceId
+          in: query
+          description: Filter alarms for a specific resource
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+      responses:
+        '200':
+          description: List of network alarms
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlarmList'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authentication for Blue Planet API
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.blueplanet.com/oauth/token
+          scopes:
+            topology:read: Read network topology
+            services:read: Read network services
+            services:write: Create and modify network services
+            performance:read: Read performance metrics
+            alarms:read: Read network alarms
+  schemas:
+    NodeList:
+      type: object
+      properties:
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/NodeSummary'
+    NodeSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        adminState:
+          type: string
+        operState:
+          type: string
+        vendorName:
+          type: string
+        ipAddress:
+          type: string
+    Node:
+      allOf:
+        - $ref: '#/components/schemas/NodeSummary'
+        - type: object
+          properties:
+            softwareVersion:
+              type: string
+            location:
+              $ref: '#/components/schemas/Location'
+            ports:
+              type: array
+              items:
+                $ref: '#/components/schemas/Port'
+            managedBy:
+              type: string
+    Location:
+      type: object
+      properties:
+        siteName:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        address:
+          type: string
+    Port:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        adminState:
+          type: string
+        operState:
+          type: string
+        speed:
+          type: string
+    LinkList:
+      type: object
+      properties:
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        aEndNode:
+          type: string
+        aEndPort:
+          type: string
+        zEndNode:
+          type: string
+        zEndPort:
+          type: string
+        adminState:
+          type: string
+        operState:
+          type: string
+        capacity:
+          type: string
+    ServiceList:
+      type: object
+      properties:
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceSummary'
+    ServiceSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        serviceType:
+          type: string
+        state:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    Service:
+      allOf:
+        - $ref: '#/components/schemas/ServiceSummary'
+        - type: object
+          properties:
+            description:
+              type: string
+            endpoints:
+              type: array
+              items:
+                $ref: '#/components/schemas/ServiceEndpoint'
+            bandwidth:
+              type: string
+            protectionType:
+              type: string
+              enum: [UNPROTECTED, PROTECTED_1PLUS1, REROUTABLE]
+            provisionedAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+    ServiceEndpoint:
+      type: object
+      properties:
+        nodeId:
+          type: string
+        portId:
+          type: string
+        vlanId:
+          type: integer
+        direction:
+          type: string
+          enum: [A_END, Z_END]
+    ServiceRequest:
+      type: object
+      required: [name, serviceType, endpoints]
+      properties:
+        name:
+          type: string
+        serviceType:
+          type: string
+          enum: [EPL, EVPL, OTN_ODU, WDM_OCH]
+        description:
+          type: string
+        bandwidth:
+          type: string
+          description: Requested bandwidth (e.g., 10G, 100G)
+        endpoints:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            $ref: '#/components/schemas/ServiceEndpoint'
+        protectionType:
+          type: string
+          enum: [UNPROTECTED, PROTECTED_1PLUS1, REROUTABLE]
+    PerformanceMetrics:
+      type: object
+      properties:
+        resourceId:
+          type: string
+        metricType:
+          type: string
+        granularity:
+          type: string
+        dataPoints:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+                format: date-time
+              values:
+                type: object
+                additionalProperties:
+                  type: number
+    AlarmList:
+      type: object
+      properties:
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Alarm'
+    Alarm:
+      type: object
+      properties:
+        id:
+          type: string
+        resourceId:
+          type: string
+        resourceType:
+          type: string
+        severity:
+          type: string
+          enum: [CRITICAL, MAJOR, MINOR, WARNING, NOT_ALARMED]
+        alarmType:
+          type: string
+        description:
+          type: string
+        raisedAt:
+          type: string
+          format: date-time
+        clearedAt:
+          type: string
+          format: date-time
+        acknowledged:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
