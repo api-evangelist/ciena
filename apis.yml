@@ -1,18 +1,16 @@
 aid: ciena
-url: 
-  https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/apis.yml
 apis:
   - aid: ciena:blue-planet-api
     name: Ciena Blue Planet Open API
     tags:
-      - Telecom
-      - SDN
+      - MEF
       - Network Automation
       - Optical
+      - SDN
+      - Telecom
       - TM Forum
-      - MEF
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/image.png
+    image: https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/image.png
     humanURL: https://www.blueplanet.com/technology/open-apis.html
     baseURL: https://api.blueplanet.com
     properties:
@@ -26,8 +24,7 @@ apis:
         type: Support
       - url: https://www.blueplanet.com/contact
         type: Contact
-      - url: 
-          https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/openapi/ciena-blue-planet-openapi.yml
+      - url: https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/openapi/ciena-blue-planet-openapi.yml
         type: OpenAPI
     description: >-
       Ciena Blue Planet provides open APIs for multi-layer SDN network management
@@ -38,19 +35,16 @@ apis:
   - aid: ciena:mcp-api
     name: Ciena MCP (Manage, Control and Plan) API
     tags:
-      - Telecom
-      - SDN
+      - NETCONF
       - Network Management
       - RESTCONF
-      - NETCONF
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/image.png
-    humanURL: 
-      https://software.ciena.com/releasenotes/MCP-DOCS_5.2-217/build/site/mcp-docs/user-guide/Overview.html
+      - SDN
+      - Telecom
+    image: https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/image.png
+    humanURL: https://software.ciena.com/releasenotes/MCP-DOCS_5.2-217/build/site/mcp-docs/user-guide/Overview.html
     baseURL: https://api.ciena.com
     properties:
-      - url: 
-          https://software.ciena.com/releasenotes/MCP-DOCS_5.2-217/build/site/mcp-docs/user-guide/Overview.html
+      - url: https://software.ciena.com/releasenotes/MCP-DOCS_5.2-217/build/site/mcp-docs/user-guide/Overview.html
         type: Documentation
     description: >-
       Ciena's Manage, Control and Plan (MCP) is a multi-layer Software Defined Networking
@@ -60,12 +54,11 @@ apis:
   - aid: ciena:emulation-cloud-api
     name: Ciena Emulation Cloud API
     tags:
-      - Telecom
       - Developer Tools
-      - Testing
       - SDN
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/image.png
+      - Telecom
+      - Testing
+    image: https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/image.png
     humanURL: https://www.ciena.com/products/emulation-cloud
     baseURL: https://developer.ciena.com
     properties:
@@ -81,14 +74,11 @@ apis:
 common:
   - url: https://www.ciena.com/
     type: Website
-  - url: 
-      https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/openapi/ciena-blue-planet-openapi.yml
+  - url: https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/openapi/ciena-blue-planet-openapi.yml
     type: OpenAPI
-  - url: 
-      https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/json-schema/ciena-network-service-schema.json
+  - url: https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/json-schema/ciena-network-service-schema.json
     type: JSONSchema
-  - url: 
-      https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/json-ld/ciena-context.jsonld
+  - url: https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/json-ld/ciena-context.jsonld
     type: JSONLDContext
   - url: https://developer.blueplanet.com
     type: Portal

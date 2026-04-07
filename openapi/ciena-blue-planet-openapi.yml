@@ -20,16 +20,12 @@ servers:
 security:
   - oauth2: []
 tags:
-  - name: Topology
-    description: Network topology resources including nodes and links
-  - name: Services
-    description: Network service lifecycle management
-  - name: Performance
-    description: Performance monitoring and metrics
   - name: Alarms
     description: Network alarm and fault management
-  - name: Resources
-    description: Physical and logical network resources
+  - name: Performance
+    description: Performance monitoring and metrics
+  - name: Topology
+    description: Network topology resources including nodes and links
 paths:
   /topology/nodes:
     get:
@@ -132,8 +128,7 @@ paths:
       operationId: listServices
       summary: List provisioned network services
       description: Returns all network services provisioned on the Blue Planet platform.
-      tags:
-        - Services
+      tags: []
       parameters:
         - name: state
           in: query
@@ -165,8 +160,7 @@ paths:
         Provisions a new network service. Supports optical circuits, Ethernet services,
         and virtual network services. Service creation is asynchronous; monitor the returned
         service ID for completion status.
-      tags:
-        - Services
+      tags: []
       requestBody:
         required: true
         content:
@@ -189,8 +183,7 @@ paths:
       operationId: getService
       summary: Get network service details
       description: Returns the full specification and current status of a provisioned network service.
-      tags:
-        - Services
+      tags: []
       parameters:
         - name: serviceId
           in: path
@@ -210,8 +203,7 @@ paths:
       operationId: deleteService
       summary: Delete a network service
       description: Deprovisions and removes a network service. This operation is asynchronous.
-      tags:
-        - Services
+      tags: []
       parameters:
         - name: serviceId
           in: path
