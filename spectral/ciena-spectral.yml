@@ -1,0 +1,45 @@
+extends:
+  - spectral:oas
+rules:
+  ciena-https-only:
+    description: Ciena APIs must use HTTPS for all servers.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://'
+  ciena-info-contact:
+    description: API definitions must declare contact information.
+    severity: error
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+  ciena-license-required:
+    description: API definitions must declare a license aligned with Ciena terms.
+    severity: warn
+    given: $.info
+    then:
+      field: license
+      function: truthy
+  ciena-oauth2-required:
+    description: All Ciena APIs must declare OAuth 2.0 security on a securitySchemes block.
+    severity: warn
+    given: $.components.securitySchemes
+    then:
+      field: oauth2
+      function: truthy
+  ciena-tag-categorization:
+    description: Operations should be categorized by tag (Topology, Alarms, Performance, Service).
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: tags
+      function: truthy
+  ciena-tmf-mef-naming:
+    description: TM Forum and MEF aligned operations should expose a recognizable resource path.
+    severity: hint
+    given: $.paths
+    then:
+      function: truthy

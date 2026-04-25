@@ -1,0 +1,114 @@
+name: ciena-capabilities
+description: >-
+  Naftiko sandbox capabilities for Ciena Blue Planet Open APIs and the Ciena
+  MCP (Manage, Control, and Plan) RESTCONF APIs covering optical and packet
+  network management, service provisioning, and performance monitoring.
+provider: ciena
+version: '1.0'
+capabilities:
+  - id: ciena.topology.list-nodes
+    name: List topology nodes
+    description: List network topology nodes (network elements) visible to the user.
+    operationId: listTopologyNodes
+    inputs:
+      - name: type
+        type: string
+        required: false
+      - name: adminState
+        type: string
+        required: false
+    outputs:
+      - name: nodes
+        type: array
+    tags: [topology, network-elements]
+  - id: ciena.topology.list-links
+    name: List topology links
+    description: List network links between topology nodes.
+    operationId: listTopologyLinks
+    inputs:
+      - name: linkType
+        type: string
+        required: false
+    outputs:
+      - name: links
+        type: array
+    tags: [topology, links]
+  - id: ciena.alarms.list
+    name: List active alarms
+    description: List active fault management alarms across the network.
+    operationId: listAlarms
+    inputs:
+      - name: severity
+        type: string
+        required: false
+      - name: nodeId
+        type: string
+        required: false
+    outputs:
+      - name: alarms
+        type: array
+    tags: [alarms, fault-management]
+  - id: ciena.performance.read-metrics
+    name: Read performance metrics
+    description: Read performance monitoring counters for a specified network element.
+    operationId: readPerformanceMetrics
+    inputs:
+      - name: nodeId
+        type: string
+        required: true
+      - name: metric
+        type: string
+        required: false
+      - name: window
+        type: string
+        required: false
+    outputs:
+      - name: metrics
+        type: array
+    tags: [performance, monitoring]
+  - id: ciena.service.provision-circuit
+    name: Provision a circuit
+    description: Provision an end-to-end optical or packet circuit between endpoints.
+    operationId: createServiceCircuit
+    inputs:
+      - name: aEnd
+        type: string
+        required: true
+      - name: zEnd
+        type: string
+        required: true
+      - name: capacity
+        type: string
+        required: true
+      - name: protectionType
+        type: string
+        required: false
+    outputs:
+      - name: circuit
+        type: object
+    tags: [service, provisioning, mef-lso]
+  - id: ciena.service.delete-circuit
+    name: Delete a circuit
+    description: Delete a previously provisioned circuit.
+    operationId: deleteServiceCircuit
+    inputs:
+      - name: circuitId
+        type: string
+        required: true
+    outputs: []
+    tags: [service, provisioning]
+  - id: ciena.mcp.netconf-config
+    name: Apply NETCONF configuration
+    description: Push a NETCONF/RESTCONF configuration update to a managed device.
+    operationId: applyNetconfConfig
+    inputs:
+      - name: nodeId
+        type: string
+        required: true
+      - name: configXml
+        type: string
+        required: true
+    outputs:
+      - name: result
+        type: object
+    tags: [mcp, restconf, netconf]
