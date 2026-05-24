@@ -131,6 +131,8 @@ common:
     url: spectral/ciena-spectral.yml
   - type: NaftikoCapabilities
     url: naftiko/ciena-capabilities.yml
+  - type: LLMsTxt
+    url: https://developer.ciena.com/llms.txt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
