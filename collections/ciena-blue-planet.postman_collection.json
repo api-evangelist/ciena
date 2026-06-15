@@ -1,0 +1,1353 @@
+{
+  "item": [
+    {
+      "id": "22db8281-5535-4598-b51f-87a2822e29a8",
+      "name": "Alarms",
+      "description": {
+        "content": "Network alarm and fault management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c52c5754-1926-4e26-861c-b38f6e334476",
+          "name": "List network alarms",
+          "request": {
+            "name": "List network alarms",
+            "description": {
+              "content": "Returns active network alarms, faults, and conditions across all managed network elements.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alarms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "severity",
+                  "value": "<string>",
+                  "description": "Filter by alarm severity"
+                },
+                {
+                  "disabled": false,
+                  "key": "resourceId",
+                  "value": "<string>",
+                  "description": "Filter alarms for a specific resource"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4e98c179-6ac8-4572-9146-739783995abb",
+              "name": "List of network alarms",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alarms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "severity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resourceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 5715,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"resourceId\": \"string\",\n      \"resourceType\": \"string\",\n      \"severity\": \"MINOR\",\n      \"alarmType\": \"string\",\n      \"description\": \"string\",\n      \"raisedAt\": \"1995-07-20T12:19:13.505Z\",\n      \"clearedAt\": \"1979-05-25T13:07:13.413Z\",\n      \"acknowledged\": false\n    },\n    {\n      \"id\": \"string\",\n      \"resourceId\": \"string\",\n      \"resourceType\": \"string\",\n      \"severity\": \"MINOR\",\n      \"alarmType\": \"string\",\n      \"description\": \"string\",\n      \"raisedAt\": \"2020-11-23T19:27:01.865Z\",\n      \"clearedAt\": \"2003-05-16T18:05:35.157Z\",\n      \"acknowledged\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "48fa764c-6b11-42cc-8b61-35d468326f87",
+      "name": "Performance",
+      "description": {
+        "content": "Performance monitoring and metrics",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a13b945b-4f5e-451e-ad5c-fdbe1668f8bb",
+          "name": "Retrieve network performance metrics",
+          "request": {
+            "name": "Retrieve network performance metrics",
+            "description": {
+              "content": "Returns performance monitoring data for network elements or services including OTN PM counters, Ethernet PM data, and optical performance parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "performance",
+                "metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "resourceId",
+                  "value": "<string>",
+                  "description": "(Required) ID of the network resource to query metrics for"
+                },
+                {
+                  "disabled": false,
+                  "key": "metricType",
+                  "value": "<string>",
+                  "description": "Type of performance metric"
+                },
+                {
+                  "disabled": false,
+                  "key": "granularity",
+                  "value": "15min",
+                  "description": "Data granularity period"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "Start of query window (ISO 8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "End of query window (ISO 8601)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed29504a-1527-40c2-bac8-a341224cbd23",
+              "name": "Performance metric data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "performance",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resourceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "metricType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "15min"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resourceId\": \"string\",\n  \"metricType\": \"string\",\n  \"granularity\": \"string\",\n  \"dataPoints\": [\n    {\n      \"timestamp\": \"2003-02-14T14:24:22.114Z\",\n      \"values\": {\n        \"key_0\": 9110.76426774809\n      }\n    },\n    {\n      \"timestamp\": \"1975-03-22T18:44:33.936Z\",\n      \"values\": {\n        \"key_0\": 5908.778106358216\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4453e9cf-c184-45a6-8f30-4e1c3839541c",
+      "name": "Topology",
+      "description": {
+        "content": "Network topology resources including nodes and links",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b6d6003f-b822-4c7f-803e-2f37c366171d",
+          "name": "List network topology nodes",
+          "request": {
+            "name": "List network topology nodes",
+            "description": {
+              "content": "Returns all network topology nodes (network elements) visible to the authenticated user. Supports filtering by node type, administrative state, and operational state.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "topology",
+                "nodes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by node type"
+                },
+                {
+                  "disabled": false,
+                  "key": "adminState",
+                  "value": "<string>",
+                  "description": "Filter by administrative state"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "42cc5b52-50ba-4b78-8fde-6627639cc513",
+              "name": "List of topology nodes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "topology",
+                    "nodes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "adminState",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 9141,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"adminState\": \"string\",\n      \"operState\": \"string\",\n      \"vendorName\": \"string\",\n      \"ipAddress\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"adminState\": \"string\",\n      \"operState\": \"string\",\n      \"vendorName\": \"string\",\n      \"ipAddress\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "399996ea-98f4-4fcf-a88f-356111e86f55",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "topology",
+                    "nodes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "adminState",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e76622a8-0072-42a1-b259-befb7c381310",
+          "name": "Get a specific network topology node",
+          "request": {
+            "name": "Get a specific network topology node",
+            "description": {
+              "content": "Returns detailed information for a single network topology node including its ports and interfaces.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "topology",
+                "nodes",
+                ":nodeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "nodeId",
+                  "description": "(Required) Unique node identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b750f189-4c57-449e-bbb1-04b3414773c9",
+              "name": "Network topology node details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "topology",
+                    "nodes",
+                    ":nodeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nodeId",
+                      "description": "(Required) Unique node identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"adminState\": \"string\",\n  \"operState\": \"string\",\n  \"vendorName\": \"string\",\n  \"ipAddress\": \"string\",\n  \"softwareVersion\": \"string\",\n  \"location\": {\n    \"siteName\": \"string\",\n    \"latitude\": 4947.8205227609,\n    \"longitude\": 4267.221485606167,\n    \"address\": \"string\"\n  },\n  \"ports\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"adminState\": \"string\",\n      \"operState\": \"string\",\n      \"speed\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"adminState\": \"string\",\n      \"operState\": \"string\",\n      \"speed\": \"string\"\n    }\n  ],\n  \"managedBy\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5cefa993-b638-4ccb-9f8a-5f1a4935a8d4",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "topology",
+                    "nodes",
+                    ":nodeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nodeId",
+                      "description": "(Required) Unique node identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23fd60f6-073a-4f53-b144-bdc08c63f361",
+          "name": "List network topology links",
+          "request": {
+            "name": "List network topology links",
+            "description": {
+              "content": "Returns all network topology links (connections between nodes) visible to the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "topology",
+                "links"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "nodeId",
+                  "value": "<string>",
+                  "description": "Filter links connected to a specific node"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by link type"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "03263a6d-3117-45b5-8c0f-196ac44e6781",
+              "name": "List of topology links",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "topology",
+                    "links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "nodeId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 5706,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"aEndNode\": \"string\",\n      \"aEndPort\": \"string\",\n      \"zEndNode\": \"string\",\n      \"zEndPort\": \"string\",\n      \"adminState\": \"string\",\n      \"operState\": \"string\",\n      \"capacity\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"aEndNode\": \"string\",\n      \"aEndPort\": \"string\",\n      \"zEndNode\": \"string\",\n      \"zEndPort\": \"string\",\n      \"adminState\": \"string\",\n      \"operState\": \"string\",\n      \"capacity\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "afffe996-ece4-4590-8d3c-5d8fac2c8bb2",
+      "name": "List provisioned network services",
+      "request": {
+        "name": "List provisioned network services",
+        "description": {
+          "content": "Returns all network services provisioned on the Blue Planet platform.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "services"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "state",
+              "value": "<string>",
+              "description": "Filter by service state"
+            },
+            {
+              "disabled": false,
+              "key": "serviceType",
+              "value": "<string>",
+              "description": "Filter by service type"
+            },
+            {
+              "disabled": false,
+              "key": "limit",
+              "value": "50"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "0c7b5e3a-c84c-4617-863f-cec0a5484ac4",
+          "name": "List of network services",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "state",
+                  "value": "<string>"
+                },
+                {
+                  "key": "serviceType",
+                  "value": "<string>"
+                },
+                {
+                  "key": "limit",
+                  "value": "50"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"total\": 4868,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"serviceType\": \"string\",\n      \"state\": \"string\",\n      \"createdAt\": \"1967-10-15T14:42:52.063Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"serviceType\": \"string\",\n      \"state\": \"string\",\n      \"createdAt\": \"2022-07-29T12:36:50.710Z\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "9f54fde0-7298-47cd-aeff-4806f81f6172",
+      "name": "Create a new network service",
+      "request": {
+        "name": "Create a new network service",
+        "description": {
+          "content": "Provisions a new network service. Supports optical circuits, Ethernet services, and virtual network services. Service creation is asynchronous; monitor the returned service ID for completion status.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "services"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"<string>\",\n  \"serviceType\": \"<string>\",\n  \"endpoints\": [\n    {\n      \"nodeId\": \"<string>\",\n      \"portId\": \"<string>\",\n      \"vlanId\": \"<integer>\",\n      \"direction\": \"<string>\"\n    },\n    {\n      \"nodeId\": \"<string>\",\n      \"portId\": \"<string>\",\n      \"vlanId\": \"<integer>\",\n      \"direction\": \"<string>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"bandwidth\": \"<string>\",\n  \"protectionType\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "c25e8876-ccd6-42fa-a621-b4392a9e001e",
+          "name": "Service creation accepted",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"serviceType\": \"<string>\",\n  \"endpoints\": [\n    {\n      \"nodeId\": \"string\",\n      \"portId\": \"string\",\n      \"vlanId\": 905,\n      \"direction\": \"A_END\"\n    },\n    {\n      \"nodeId\": \"string\",\n      \"portId\": \"string\",\n      \"vlanId\": 9978,\n      \"direction\": \"Z_END\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"bandwidth\": \"<string>\",\n  \"protectionType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"serviceType\": \"string\",\n  \"state\": \"string\",\n  \"createdAt\": \"1991-11-26T16:09:08.971Z\",\n  \"description\": \"string\",\n  \"endpoints\": [\n    {\n      \"nodeId\": \"string\",\n      \"portId\": \"string\",\n      \"vlanId\": 808,\n      \"direction\": \"A_END\"\n    },\n    {\n      \"nodeId\": \"string\",\n      \"portId\": \"string\",\n      \"vlanId\": 1229,\n      \"direction\": \"A_END\"\n    }\n  ],\n  \"bandwidth\": \"string\",\n  \"protectionType\": \"PROTECTED_1PLUS1\",\n  \"provisionedAt\": \"1996-11-24T16:06:18.480Z\",\n  \"updatedAt\": \"2002-01-31T04:45:18.963Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "351fdf81-b796-4c1c-9b55-1da553923914",
+          "name": "Invalid request parameters",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"serviceType\": \"<string>\",\n  \"endpoints\": [\n    {\n      \"nodeId\": \"string\",\n      \"portId\": \"string\",\n      \"vlanId\": 905,\n      \"direction\": \"A_END\"\n    },\n    {\n      \"nodeId\": \"string\",\n      \"portId\": \"string\",\n      \"vlanId\": 9978,\n      \"direction\": \"Z_END\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"bandwidth\": \"<string>\",\n  \"protectionType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "5b4ead49-bb9d-4ec8-9a4a-98fffec609ae",
+          "name": "Service with same name already exists",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"serviceType\": \"<string>\",\n  \"endpoints\": [\n    {\n      \"nodeId\": \"string\",\n      \"portId\": \"string\",\n      \"vlanId\": 905,\n      \"direction\": \"A_END\"\n    },\n    {\n      \"nodeId\": \"string\",\n      \"portId\": \"string\",\n      \"vlanId\": 9978,\n      \"direction\": \"Z_END\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"bandwidth\": \"<string>\",\n  \"protectionType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "3d905805-4863-4237-8878-186327ac14c9",
+      "name": "Get network service details",
+      "request": {
+        "name": "Get network service details",
+        "description": {
+          "content": "Returns the full specification and current status of a provisioned network service.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "services",
+            ":serviceId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "serviceId",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "d767bbd2-09f1-4cd2-a521-32c6a03c279b",
+          "name": "Network service details",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services",
+                ":serviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"serviceType\": \"string\",\n  \"state\": \"string\",\n  \"createdAt\": \"1991-11-26T16:09:08.971Z\",\n  \"description\": \"string\",\n  \"endpoints\": [\n    {\n      \"nodeId\": \"string\",\n      \"portId\": \"string\",\n      \"vlanId\": 808,\n      \"direction\": \"A_END\"\n    },\n    {\n      \"nodeId\": \"string\",\n      \"portId\": \"string\",\n      \"vlanId\": 1229,\n      \"direction\": \"A_END\"\n    }\n  ],\n  \"bandwidth\": \"string\",\n  \"protectionType\": \"PROTECTED_1PLUS1\",\n  \"provisionedAt\": \"1996-11-24T16:06:18.480Z\",\n  \"updatedAt\": \"2002-01-31T04:45:18.963Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "6550841d-b29d-48c9-8835-dbc45b4e7436",
+          "name": "Resource not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services",
+                ":serviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "9ce0be7c-7df9-4c94-84ca-c0f26d4fcf85",
+      "name": "Delete a network service",
+      "request": {
+        "name": "Delete a network service",
+        "description": {
+          "content": "Deprovisions and removes a network service. This operation is asynchronous.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "services",
+            ":serviceId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "serviceId",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "3b146373-6bf2-48bd-9fff-5db432c9dbb9",
+          "name": "Service deletion accepted",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services",
+                ":serviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Accepted",
+          "code": 202,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "8e604ca0-2492-4d15-a92b-3bae4d525df0",
+          "name": "Resource not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services",
+                ":serviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.blueplanet.com/bpocore/market/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "topology:read services:read services:write performance:read alarms:read"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.blueplanet.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ce5a1268-84e4-48fa-b057-399a5cd799fc",
+    "name": "Ciena Blue Planet Open API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ciena Blue Planet provides open APIs for multi-layer SDN network management and automation. The platform supports TM Forum Open APIs, MEF Lifecycle Service Orchestration (LSO) APIs including Legato and Sonata, and integrates with ONAP policy frameworks. APIs enable network topology management, circuit provisioning, performance monitoring, and network operations automation for telecom carriers.\n\nContact Support:\n Name: Blue Planet Support",
+      "type": "text/plain"
+    }
+  }
+}

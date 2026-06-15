@@ -1,0 +1,291 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ciena Blue Planet Open API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.blueplanet.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Topology",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List network topology nodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.blueplanet.com/bpocore/market/api/v1/topology/nodes",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by node type"
+              },
+              {
+                "name": "adminState",
+                "value": "",
+                "type": "query",
+                "description": "Filter by administrative state"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all network topology nodes (network elements) visible to the authenticated user. Supports filtering by node type, administrative state, and operational state."
+        },
+        {
+          "info": {
+            "name": "Get a specific network topology node",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.blueplanet.com/bpocore/market/api/v1/topology/nodes/:nodeId",
+            "params": [
+              {
+                "name": "nodeId",
+                "value": "",
+                "type": "path",
+                "description": "Unique node identifier"
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a single network topology node including its ports and interfaces."
+        },
+        {
+          "info": {
+            "name": "List network topology links",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.blueplanet.com/bpocore/market/api/v1/topology/links",
+            "params": [
+              {
+                "name": "nodeId",
+                "value": "",
+                "type": "query",
+                "description": "Filter links connected to a specific node"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by link type"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all network topology links (connections between nodes) visible to the authenticated user."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Default",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List provisioned network services",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.blueplanet.com/bpocore/market/api/v1/services",
+            "params": [
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by service state"
+              },
+              {
+                "name": "serviceType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by service type"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all network services provisioned on the Blue Planet platform."
+        },
+        {
+          "info": {
+            "name": "Create a new network service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.blueplanet.com/bpocore/market/api/v1/services",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Provisions a new network service. Supports optical circuits, Ethernet services, and virtual network services. Service creation is asynchronous; monitor the returned service ID for completion status."
+        },
+        {
+          "info": {
+            "name": "Get network service details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.blueplanet.com/bpocore/market/api/v1/services/:serviceId",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the full specification and current status of a provisioned network service."
+        },
+        {
+          "info": {
+            "name": "Delete a network service",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.blueplanet.com/bpocore/market/api/v1/services/:serviceId",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deprovisions and removes a network service. This operation is asynchronous."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Performance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve network performance metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.blueplanet.com/bpocore/market/api/v1/performance/metrics",
+            "params": [
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the network resource to query metrics for"
+              },
+              {
+                "name": "metricType",
+                "value": "",
+                "type": "query",
+                "description": "Type of performance metric"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "Data granularity period"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "Start of query window (ISO 8601)"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "End of query window (ISO 8601)"
+              }
+            ]
+          },
+          "docs": "Returns performance monitoring data for network elements or services including OTN PM counters, Ethernet PM data, and optical performance parameters."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Alarms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List network alarms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.blueplanet.com/bpocore/market/api/v1/alarms",
+            "params": [
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "Filter by alarm severity"
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "query",
+                "description": "Filter alarms for a specific resource"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns active network alarms, faults, and conditions across all managed network elements."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
