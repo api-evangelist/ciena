@@ -127,7 +127,7 @@ common:
     url: json-schema/ciena-network-service-schema.json
   - type: Spectral
     url: spectral/ciena-spectral.yml
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://developer.ciena.com/llms.txt
 maintainers:
   - FN: Kin Lane
