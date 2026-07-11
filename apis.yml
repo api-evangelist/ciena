@@ -95,6 +95,8 @@ apis:
       - type: Portal
         url: https://developer.ciena.com/
 common:
+  - type: OAuthScopes
+    url: scopes/ciena-scopes.yml
   - type: GitHubOrganization
     url: https://github.com/ciena
   - type: LinkedIn

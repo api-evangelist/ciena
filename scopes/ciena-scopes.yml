@@ -1,0 +1,41 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/ciena-blue-planet-openapi.yml
+schemes:
+- name: oauth2
+  source: openapi/ciena-blue-planet-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.blueplanet.com/oauth/token
+  description: OAuth 2.0 authentication for Blue Planet API
+scopes:
+- scope: alarms:read
+  description: Read network alarms
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/ciena-blue-planet-openapi.yml
+- scope: performance:read
+  description: Read performance metrics
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/ciena-blue-planet-openapi.yml
+- scope: services:read
+  description: Read network services
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/ciena-blue-planet-openapi.yml
+- scope: services:write
+  description: Create and modify network services
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/ciena-blue-planet-openapi.yml
+- scope: topology:read
+  description: Read network topology
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/ciena-blue-planet-openapi.yml
