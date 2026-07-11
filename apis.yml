@@ -95,6 +95,12 @@ apis:
       - type: Portal
         url: https://developer.ciena.com/
 common:
+  - type: VulnerabilityDisclosure
+    url: security/ciena-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/ciena-domain-security.yml
+  - type: Authentication
+    url: authentication/ciena-authentication.yml
   - type: OAuthScopes
     url: scopes/ciena-scopes.yml
   - type: GitHubOrganization
