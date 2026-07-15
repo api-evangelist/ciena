@@ -95,6 +95,8 @@ apis:
       - type: Portal
         url: https://developer.ciena.com/
 common:
+  - type: AgenticAccess
+    url: agentic-access/ciena-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/ciena-vulnerability-disclosure.yml
   - type: DomainSecurity
