@@ -1,0 +1,109 @@
+openapi: 3.1.0
+info:
+  title: Ciena Blue Planet Open Alarms API
+  description: Ciena Blue Planet provides open APIs for multi-layer SDN network management and automation. The platform supports TM Forum Open APIs, MEF Lifecycle Service Orchestration (LSO) APIs including Legato and Sonata, and integrates with ONAP policy frameworks. APIs enable network topology management, circuit provisioning, performance monitoring, and network operations automation for telecom carriers.
+  version: 1.0.0
+  contact:
+    name: Blue Planet Support
+    url: https://www.blueplanet.com/support
+  license:
+    name: Ciena Terms and Conditions
+    url: https://www.ciena.com/customers/terms-and-conditions
+servers:
+- url: https://api.blueplanet.com/bpocore/market/api/v1
+  description: Blue Planet Production API
+security:
+- oauth2: []
+tags:
+- name: Alarms
+  description: Network alarm and fault management
+paths:
+  /alarms:
+    get:
+      operationId: listAlarms
+      summary: List network alarms
+      description: Returns active network alarms, faults, and conditions across all managed network elements.
+      tags:
+      - Alarms
+      parameters:
+      - name: severity
+        in: query
+        description: Filter by alarm severity
+        schema:
+          type: string
+          enum:
+          - CRITICAL
+          - MAJOR
+          - MINOR
+          - WARNING
+          - NOT_ALARMED
+      - name: resourceId
+        in: query
+        description: Filter alarms for a specific resource
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: List of network alarms
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlarmList'
+components:
+  schemas:
+    AlarmList:
+      type: object
+      properties:
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Alarm'
+    Alarm:
+      type: object
+      properties:
+        id:
+          type: string
+        resourceId:
+          type: string
+        resourceType:
+          type: string
+        severity:
+          type: string
+          enum:
+          - CRITICAL
+          - MAJOR
+          - MINOR
+          - WARNING
+          - NOT_ALARMED
+        alarmType:
+          type: string
+        description:
+          type: string
+        raisedAt:
+          type: string
+          format: date-time
+        clearedAt:
+          type: string
+          format: date-time
+        acknowledged:
+          type: boolean
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authentication for Blue Planet API
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.blueplanet.com/oauth/token
+          scopes:
+            topology:read: Read network topology
+            services:read: Read network services
+            services:write: Create and modify network services
+            performance:read: Read performance metrics
+            alarms:read: Read network alarms

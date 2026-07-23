@@ -1,0 +1,108 @@
+openapi: 3.1.0
+info:
+  title: Ciena Blue Planet Open Alarms Performance API
+  description: Ciena Blue Planet provides open APIs for multi-layer SDN network management and automation. The platform supports TM Forum Open APIs, MEF Lifecycle Service Orchestration (LSO) APIs including Legato and Sonata, and integrates with ONAP policy frameworks. APIs enable network topology management, circuit provisioning, performance monitoring, and network operations automation for telecom carriers.
+  version: 1.0.0
+  contact:
+    name: Blue Planet Support
+    url: https://www.blueplanet.com/support
+  license:
+    name: Ciena Terms and Conditions
+    url: https://www.ciena.com/customers/terms-and-conditions
+servers:
+- url: https://api.blueplanet.com/bpocore/market/api/v1
+  description: Blue Planet Production API
+security:
+- oauth2: []
+tags:
+- name: Performance
+  description: Performance monitoring and metrics
+paths:
+  /performance/metrics:
+    get:
+      operationId: getPerformanceMetrics
+      summary: Retrieve network performance metrics
+      description: Returns performance monitoring data for network elements or services including OTN PM counters, Ethernet PM data, and optical performance parameters.
+      tags:
+      - Performance
+      parameters:
+      - name: resourceId
+        in: query
+        required: true
+        description: ID of the network resource to query metrics for
+        schema:
+          type: string
+      - name: metricType
+        in: query
+        description: Type of performance metric
+        schema:
+          type: string
+          enum:
+          - interface
+          - optical
+          - otn
+          - ethernet
+      - name: granularity
+        in: query
+        description: Data granularity period
+        schema:
+          type: string
+          enum:
+          - 15min
+          - 24hour
+          default: 15min
+      - name: startTime
+        in: query
+        description: Start of query window (ISO 8601)
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        description: End of query window (ISO 8601)
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Performance metric data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerformanceMetrics'
+components:
+  schemas:
+    PerformanceMetrics:
+      type: object
+      properties:
+        resourceId:
+          type: string
+        metricType:
+          type: string
+        granularity:
+          type: string
+        dataPoints:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+                format: date-time
+              values:
+                type: object
+                additionalProperties:
+                  type: number
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authentication for Blue Planet API
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.blueplanet.com/oauth/token
+          scopes:
+            topology:read: Read network topology
+            services:read: Read network services
+            services:write: Create and modify network services
+            performance:read: Read performance metrics
+            alarms:read: Read network alarms

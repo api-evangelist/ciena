@@ -1,0 +1,261 @@
+openapi: 3.1.0
+info:
+  title: Ciena Blue Planet Open Alarms Topology API
+  description: Ciena Blue Planet provides open APIs for multi-layer SDN network management and automation. The platform supports TM Forum Open APIs, MEF Lifecycle Service Orchestration (LSO) APIs including Legato and Sonata, and integrates with ONAP policy frameworks. APIs enable network topology management, circuit provisioning, performance monitoring, and network operations automation for telecom carriers.
+  version: 1.0.0
+  contact:
+    name: Blue Planet Support
+    url: https://www.blueplanet.com/support
+  license:
+    name: Ciena Terms and Conditions
+    url: https://www.ciena.com/customers/terms-and-conditions
+servers:
+- url: https://api.blueplanet.com/bpocore/market/api/v1
+  description: Blue Planet Production API
+security:
+- oauth2: []
+tags:
+- name: Topology
+  description: Network topology resources including nodes and links
+paths:
+  /topology/nodes:
+    get:
+      operationId: listTopologyNodes
+      summary: List network topology nodes
+      description: Returns all network topology nodes (network elements) visible to the authenticated user. Supports filtering by node type, administrative state, and operational state.
+      tags:
+      - Topology
+      parameters:
+      - name: type
+        in: query
+        description: Filter by node type
+        schema:
+          type: string
+          enum:
+          - optical
+          - packet
+          - hybrid
+      - name: adminState
+        in: query
+        description: Filter by administrative state
+        schema:
+          type: string
+          enum:
+          - UNLOCKED
+          - LOCKED
+          - SHUTTING_DOWN
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+          maximum: 1000
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: List of topology nodes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /topology/nodes/{nodeId}:
+    get:
+      operationId: getTopologyNode
+      summary: Get a specific network topology node
+      description: Returns detailed information for a single network topology node including its ports and interfaces.
+      tags:
+      - Topology
+      parameters:
+      - name: nodeId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique node identifier
+      responses:
+        '200':
+          description: Network topology node details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Node'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /topology/links:
+    get:
+      operationId: listTopologyLinks
+      summary: List network topology links
+      description: Returns all network topology links (connections between nodes) visible to the authenticated user.
+      tags:
+      - Topology
+      parameters:
+      - name: nodeId
+        in: query
+        description: Filter links connected to a specific node
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: Filter by link type
+        schema:
+          type: string
+          enum:
+          - physical
+          - logical
+          - virtual
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: List of topology links
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinkList'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Location:
+      type: object
+      properties:
+        siteName:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        address:
+          type: string
+    Port:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        adminState:
+          type: string
+        operState:
+          type: string
+        speed:
+          type: string
+    LinkList:
+      type: object
+      properties:
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        aEndNode:
+          type: string
+        aEndPort:
+          type: string
+        zEndNode:
+          type: string
+        zEndPort:
+          type: string
+        adminState:
+          type: string
+        operState:
+          type: string
+        capacity:
+          type: string
+    Node:
+      allOf:
+      - $ref: '#/components/schemas/NodeSummary'
+      - type: object
+        properties:
+          softwareVersion:
+            type: string
+          location:
+            $ref: '#/components/schemas/Location'
+          ports:
+            type: array
+            items:
+              $ref: '#/components/schemas/Port'
+          managedBy:
+            type: string
+    NodeSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        adminState:
+          type: string
+        operState:
+          type: string
+        vendorName:
+          type: string
+        ipAddress:
+          type: string
+    NodeList:
+      type: object
+      properties:
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/NodeSummary'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authentication for Blue Planet API
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.blueplanet.com/oauth/token
+          scopes:
+            topology:read: Read network topology
+            services:read: Read network services
+            services:write: Create and modify network services
+            performance:read: Read performance metrics
+            alarms:read: Read network alarms

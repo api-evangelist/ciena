@@ -1,0 +1,249 @@
+openapi: 3.1.0
+info:
+  title: Ciena Blue Planet Open Alarms Services API
+  description: Ciena Blue Planet provides open APIs for multi-layer SDN network management and automation. The platform supports TM Forum Open APIs, MEF Lifecycle Service Orchestration (LSO) APIs including Legato and Sonata, and integrates with ONAP policy frameworks. APIs enable network topology management, circuit provisioning, performance monitoring, and network operations automation for telecom carriers.
+  version: 1.0.0
+  contact:
+    name: Blue Planet Support
+    url: https://www.blueplanet.com/support
+  license:
+    name: Ciena Terms and Conditions
+    url: https://www.ciena.com/customers/terms-and-conditions
+servers:
+- url: https://api.blueplanet.com/bpocore/market/api/v1
+  description: Blue Planet Production API
+security:
+- oauth2: []
+tags:
+- name: Services
+paths:
+  /services:
+    get:
+      operationId: listServices
+      summary: List provisioned network services
+      description: Returns all network services provisioned on the Blue Planet platform.
+      tags:
+      - Services
+      parameters:
+      - name: state
+        in: query
+        description: Filter by service state
+        schema:
+          type: string
+          enum:
+          - ACTIVE
+          - DEGRADED
+          - FAILED
+          - PROVISIONING
+          - DELETING
+      - name: serviceType
+        in: query
+        description: Filter by service type
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 50
+      responses:
+        '200':
+          description: List of network services
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceList'
+    post:
+      operationId: createService
+      summary: Create a new network service
+      description: Provisions a new network service. Supports optical circuits, Ethernet services, and virtual network services. Service creation is asynchronous; monitor the returned service ID for completion status.
+      tags:
+      - Services
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceRequest'
+      responses:
+        '201':
+          description: Service creation accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '409':
+          description: Service with same name already exists
+  /services/{serviceId}:
+    get:
+      operationId: getService
+      summary: Get network service details
+      description: Returns the full specification and current status of a provisioned network service.
+      tags:
+      - Services
+      parameters:
+      - name: serviceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Network service details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteService
+      summary: Delete a network service
+      description: Deprovisions and removes a network service. This operation is asynchronous.
+      tags:
+      - Services
+      parameters:
+      - name: serviceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '202':
+          description: Service deletion accepted
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    ServiceSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        serviceType:
+          type: string
+        state:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    Service:
+      allOf:
+      - $ref: '#/components/schemas/ServiceSummary'
+      - type: object
+        properties:
+          description:
+            type: string
+          endpoints:
+            type: array
+            items:
+              $ref: '#/components/schemas/ServiceEndpoint'
+          bandwidth:
+            type: string
+          protectionType:
+            type: string
+            enum:
+            - UNPROTECTED
+            - PROTECTED_1PLUS1
+            - REROUTABLE
+          provisionedAt:
+            type: string
+            format: date-time
+          updatedAt:
+            type: string
+            format: date-time
+    ServiceList:
+      type: object
+      properties:
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceSummary'
+    ServiceEndpoint:
+      type: object
+      properties:
+        nodeId:
+          type: string
+        portId:
+          type: string
+        vlanId:
+          type: integer
+        direction:
+          type: string
+          enum:
+          - A_END
+          - Z_END
+    ServiceRequest:
+      type: object
+      required:
+      - name
+      - serviceType
+      - endpoints
+      properties:
+        name:
+          type: string
+        serviceType:
+          type: string
+          enum:
+          - EPL
+          - EVPL
+          - OTN_ODU
+          - WDM_OCH
+        description:
+          type: string
+        bandwidth:
+          type: string
+          description: Requested bandwidth (e.g., 10G, 100G)
+        endpoints:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            $ref: '#/components/schemas/ServiceEndpoint'
+        protectionType:
+          type: string
+          enum:
+          - UNPROTECTED
+          - PROTECTED_1PLUS1
+          - REROUTABLE
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authentication for Blue Planet API
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.blueplanet.com/oauth/token
+          scopes:
+            topology:read: Read network topology
+            services:read: Read network services
+            services:write: Create and modify network services
+            performance:read: Read performance metrics
+            alarms:read: Read network alarms
