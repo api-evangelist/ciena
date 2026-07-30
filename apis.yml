@@ -6,7 +6,20 @@ description: >-
   platform, the Ciena MCP (Manage, Control, and Plan) NMS, and the Emulation Cloud developer environment, exposing TM
   Forum Open APIs, MEF Lifecycle Service Orchestration (LSO) APIs (Legato, Sonata), and ONAP-aligned policy controls for
   telecom carriers and managed service providers.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ciena.png
 url: https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/apis.yml
 type: Index
 access: 3rd-Party
@@ -26,74 +39,126 @@ created: '2025-02-21'
 modified: '2026-05-19'
 specificationVersion: '0.20'
 apis:
-  - aid: ciena:blue-planet-api
-    name: Ciena Blue Planet Open API
-    description: >-
-      Ciena Blue Planet provides open APIs for multi-layer SDN network management and automation. The platform supports
-      TM Forum Open APIs, MEF Lifecycle Service Orchestration (LSO) APIs including Legato and Sonata, and integrates
-      with ONAP policy frameworks. APIs enable network topology management, circuit provisioning, performance
-      monitoring, and network operations automation for telecom carriers.
-    image: https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/image.png
-    humanURL: https://www.blueplanet.com/technology/open-apis.html
-    baseURL: https://api.blueplanet.com/bpocore/market/api/v1
-    tags:
-      - MEF
-      - Network Automation
-      - Optical
-      - SDN
-      - Telecom
-      - TM Forum
-    properties:
-      - type: Documentation
-        url: https://www.blueplanet.com/technology/open-apis.html
-      - type: Portal
-        url: https://developer.blueplanet.com
-      - type: Blog
-        url: https://www.blueplanet.com/blog
-      - type: Support
-        url: https://www.blueplanet.com/support
-      - type: Contact
-        url: https://www.blueplanet.com/contact
-      - type: OpenAPI
-        url: openapi/ciena-blue-planet-openapi.yml
-  - aid: ciena:mcp-api
-    name: Ciena MCP (Manage, Control and Plan) API
-    description: >-
-      Ciena's Manage, Control and Plan (MCP) is a multi-layer Software Defined Networking (SDN) and Network Management
-      System (NMS) platform. The MCP REST and RESTCONF APIs enable network-aware management operations for optical and
-      packet networks including topology discovery, circuit provisioning, configuration management, and performance data
-      retrieval.
-    image: https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/image.png
-    humanURL: https://software.ciena.com/releasenotes/MCP-DOCS_5.2-217/build/site/mcp-docs/user-guide/Overview.html
-    baseURL: https://api.ciena.com/mcp
-    tags:
-      - NETCONF
-      - Network Management
-      - RESTCONF
-      - SDN
-      - Telecom
-    properties:
-      - type: Documentation
-        url: https://software.ciena.com/releasenotes/MCP-DOCS_5.2-217/build/site/mcp-docs/user-guide/Overview.html
-  - aid: ciena:emulation-cloud-api
-    name: Ciena Emulation Cloud API
-    description: >-
-      Ciena Emulation Cloud is an open application development environment enabling developers to create, test, and
-      fine-tune custom applications against full API definitions without requiring physical infrastructure. Provides
-      access to complete API documentation, tutorials, and sample code for Ciena network platforms.
-    image: https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/image.png
-    humanURL: https://www.ciena.com/products/emulation-cloud
-    baseURL: https://developer.ciena.com
-    tags:
-      - Developer Tools
-      - SDN
-      - Telecom
-      - Testing
-    properties:
-      - type: Documentation
-        url: https://www.ciena.com/products/emulation-cloud
-      - type: Portal
-        url: https://developer.ciena.com/
+- aid: ciena:mcp-api
+  name: Ciena MCP (Manage, Control and Plan) API
+  description: >-
+    Ciena's Manage, Control and Plan (MCP) is a multi-layer Software Defined Networking (SDN) and Network
+    Management System (NMS) platform. The MCP REST and RESTCONF APIs enable network-aware management operations
+    for optical and packet networks including topology discovery, circuit provisioning, configuration
+    management, and performance data retrieval.
+  image: https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/image.png
+  humanURL: >-
+    https://software.ciena.com/releasenotes/MCP-DOCS_5.2-217/build/site/mcp-docs/user-guide/Overview.html
+  baseURL: https://api.ciena.com/mcp
+  tags:
+  - NETCONF
+  - Network Management
+  - RESTCONF
+  - SDN
+  - Telecom
+  properties:
+  - type: Documentation
+    url: >-
+      https://software.ciena.com/releasenotes/MCP-DOCS_5.2-217/build/site/mcp-docs/user-guide/Overview.html
+- aid: ciena:emulation-cloud-api
+  name: Ciena Emulation Cloud API
+  description: >-
+    Ciena Emulation Cloud is an open application development environment enabling developers to create,
+    test, and fine-tune custom applications against full API definitions without requiring physical infrastructure.
+    Provides access to complete API documentation, tutorials, and sample code for Ciena network platforms.
+  image: https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/image.png
+  humanURL: https://www.ciena.com/products/emulation-cloud
+  baseURL: https://developer.ciena.com
+  tags:
+  - Developer Tools
+  - SDN
+  - Telecom
+  - Testing
+  properties:
+  - type: Documentation
+    url: https://www.ciena.com/products/emulation-cloud
+  - type: Portal
+    url: https://developer.ciena.com/
+- aid: ciena:ciena-alarms-api
+  name: Ciena Alarms API
+  description: Network alarm and fault management
+  humanURL: https://www.blueplanet.com/technology/open-apis.html
+  baseURL: https://api.blueplanet.com/bpocore/market/api/v1
+  tags:
+  - Alarms
+  properties:
+  - type: OpenAPI
+    url: openapi/ciena-alarms-api-openapi.yml
+  - type: Documentation
+    url: https://www.blueplanet.com/technology/open-apis.html
+  - type: Portal
+    url: https://developer.blueplanet.com
+  - type: Blog
+    url: https://www.blueplanet.com/blog
+  - type: Support
+    url: https://www.blueplanet.com/support
+  - type: Contact
+    url: https://www.blueplanet.com/contact
+- aid: ciena:ciena-performance-api
+  name: Ciena Performance API
+  description: Performance monitoring and metrics
+  humanURL: https://www.blueplanet.com/technology/open-apis.html
+  baseURL: https://api.blueplanet.com/bpocore/market/api/v1
+  tags:
+  - Performance
+  properties:
+  - type: OpenAPI
+    url: openapi/ciena-performance-api-openapi.yml
+  - type: Documentation
+    url: https://www.blueplanet.com/technology/open-apis.html
+  - type: Portal
+    url: https://developer.blueplanet.com
+  - type: Blog
+    url: https://www.blueplanet.com/blog
+  - type: Support
+    url: https://www.blueplanet.com/support
+  - type: Contact
+    url: https://www.blueplanet.com/contact
+- aid: ciena:ciena-services-api
+  name: Ciena Services API
+  description: The Services API from Ciena — 2 operation(s) for services.
+  humanURL: https://www.blueplanet.com/technology/open-apis.html
+  baseURL: https://api.blueplanet.com/bpocore/market/api/v1
+  tags:
+  - Services
+  properties:
+  - type: OpenAPI
+    url: openapi/ciena-services-api-openapi.yml
+  - type: Documentation
+    url: https://www.blueplanet.com/technology/open-apis.html
+  - type: Portal
+    url: https://developer.blueplanet.com
+  - type: Blog
+    url: https://www.blueplanet.com/blog
+  - type: Support
+    url: https://www.blueplanet.com/support
+  - type: Contact
+    url: https://www.blueplanet.com/contact
+- aid: ciena:ciena-topology-api
+  name: Ciena Topology API
+  description: Network topology resources including nodes and links
+  humanURL: https://www.blueplanet.com/technology/open-apis.html
+  baseURL: https://api.blueplanet.com/bpocore/market/api/v1
+  tags:
+  - Topology
+  properties:
+  - type: OpenAPI
+    url: openapi/ciena-topology-api-openapi.yml
+  - type: Documentation
+    url: https://www.blueplanet.com/technology/open-apis.html
+  - type: Portal
+    url: https://developer.blueplanet.com
+  - type: Blog
+    url: https://www.blueplanet.com/blog
+  - type: Support
+    url: https://www.blueplanet.com/support
+  - type: Contact
+    url: https://www.blueplanet.com/contact
 common:
   - type: AgenticAccess
     url: agentic-access/ciena-agentic-access.yml
