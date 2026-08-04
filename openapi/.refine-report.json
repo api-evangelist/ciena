@@ -1,0 +1,20 @@
+{
+  "provider": "ciena",
+  "sources": [
+    "ciena-alarms-api-openapi.yml",
+    "ciena-performance-api-openapi.yml",
+    "ciena-services-api-openapi.yml",
+    "ciena-topology-api-openapi.yml"
+  ],
+  "outputs": [
+    "ciena-alarms-api-openapi.yml",
+    "ciena-performance-api-openapi.yml",
+    "ciena-services-api-openapi.yml",
+    "ciena-topology-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
