@@ -195,7 +195,7 @@ common:
   - type: GitHubOrg
     url: https://git.blueplanet.com
   - type: OpenAPI
-    url: openapi/ciena-blue-planet-openapi.yml
+    url: openapi/_original/ciena-blue-planet-openapi.yml
   - type: JSONLDContext
     url: json-ld/ciena-context.jsonld
   - type: JSONSchema
