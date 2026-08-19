@@ -1,0 +1,181 @@
+{
+  "item": [
+    {
+      "id": "83de1cf8-59fa-4ae1-98b3-b11938f25c97",
+      "name": "Performance",
+      "description": {
+        "content": "Performance monitoring and metrics",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "362e8027-e813-458e-8ff8-d8960369c887",
+          "name": "Retrieve network performance metrics",
+          "request": {
+            "name": "Retrieve network performance metrics",
+            "description": {
+              "content": "Returns performance monitoring data for network elements or services including OTN PM counters, Ethernet PM data, and optical performance parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "performance",
+                "metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "resourceId",
+                  "value": "<string>",
+                  "description": "(Required) ID of the network resource to query metrics for"
+                },
+                {
+                  "disabled": false,
+                  "key": "metricType",
+                  "value": "<string>",
+                  "description": "Type of performance metric"
+                },
+                {
+                  "disabled": false,
+                  "key": "granularity",
+                  "value": "15min",
+                  "description": "Data granularity period"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "Start of query window (ISO 8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "End of query window (ISO 8601)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3804b848-1842-485e-8162-fed13d581a00",
+              "name": "Performance metric data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "performance",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resourceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "metricType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "15min"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resourceId\": \"string\",\n  \"metricType\": \"string\",\n  \"granularity\": \"string\",\n  \"dataPoints\": [\n    {\n      \"timestamp\": \"1972-06-01T21:29:45.756Z\",\n      \"values\": {\n        \"key_0\": 6840.556668532356\n      }\n    },\n    {\n      \"timestamp\": \"1948-10-24T16:33:06.883Z\",\n      \"values\": {\n        \"key_0\": 9669.734476130676\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.blueplanet.com/bpocore/market/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "topology:read services:read services:write performance:read alarms:read"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.blueplanet.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a3c2ab7b-49fa-44f0-a12a-2ee3f7a49928",
+    "name": "Ciena Blue Planet Open Alarms Performance API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ciena Blue Planet provides open APIs for multi-layer SDN network management and automation. The platform supports TM Forum Open APIs, MEF Lifecycle Service Orchestration (LSO) APIs including Legato and Sonata, and integrates with ONAP policy frameworks. APIs enable network topology management, circuit provisioning, performance monitoring, and network operations automation for telecom carriers.\n\nContact Support:\n Name: Blue Planet Support",
+      "type": "text/plain"
+    }
+  }
+}

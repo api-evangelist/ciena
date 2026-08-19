@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ciena Blue Planet Open Alarms Performance API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.blueplanet.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Performance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve network performance metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.blueplanet.com/bpocore/market/api/v1/performance/metrics",
+            "params": [
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the network resource to query metrics for"
+              },
+              {
+                "name": "metricType",
+                "value": "",
+                "type": "query",
+                "description": "Type of performance metric"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "Data granularity period"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "Start of query window (ISO 8601)"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "End of query window (ISO 8601)"
+              }
+            ]
+          },
+          "docs": "Returns performance monitoring data for network elements or services including OTN PM counters, Ethernet PM data, and optical performance parameters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ciena Blue Planet Open Alarms API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.blueplanet.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Alarms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List network alarms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.blueplanet.com/bpocore/market/api/v1/alarms",
+            "params": [
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "Filter by alarm severity"
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "query",
+                "description": "Filter alarms for a specific resource"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns active network alarms, faults, and conditions across all managed network elements."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

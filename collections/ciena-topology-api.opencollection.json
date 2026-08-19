@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ciena Blue Planet Open Alarms Topology API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.blueplanet.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Topology",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List network topology nodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.blueplanet.com/bpocore/market/api/v1/topology/nodes",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by node type"
+              },
+              {
+                "name": "adminState",
+                "value": "",
+                "type": "query",
+                "description": "Filter by administrative state"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all network topology nodes (network elements) visible to the authenticated user. Supports filtering by node type, administrative state, and operational state."
+        },
+        {
+          "info": {
+            "name": "Get a specific network topology node",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.blueplanet.com/bpocore/market/api/v1/topology/nodes/:nodeId",
+            "params": [
+              {
+                "name": "nodeId",
+                "value": "",
+                "type": "path",
+                "description": "Unique node identifier"
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a single network topology node including its ports and interfaces."
+        },
+        {
+          "info": {
+            "name": "List network topology links",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.blueplanet.com/bpocore/market/api/v1/topology/links",
+            "params": [
+              {
+                "name": "nodeId",
+                "value": "",
+                "type": "query",
+                "description": "Filter links connected to a specific node"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by link type"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all network topology links (connections between nodes) visible to the authenticated user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
