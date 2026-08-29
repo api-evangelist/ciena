@@ -1,0 +1,60 @@
+slug: ciena
+provider: Ciena
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Telecommunications
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Alarms
+  spec_file: ciena-alarms-api-openapi.yml
+  capability_id: BC-2600.10
+  capability_id_l1: BC-2600
+  capability_name: Network Fault Management
+  confidence: 0.92
+  evidence: 'GET /alarms  listAlarms  List network alarms; schemas: Alarm, AlarmList — "APIs enable network
+    topology management, circuit provisioning, performance monitoring, and network operations automation
+    for telecom carriers"'
+  reason: Alarm retrieval on Ciena's SDN network management platform for telecom carriers is network fault
+    detection, not any other kind of alerting; the vendor context explicitly frames it as carrier network
+    operations.
+- tag: Performance
+  spec_file: ciena-performance-api-openapi.yml
+  capability_id: BC-2600.30
+  capability_id_l1: BC-2600
+  capability_name: Network Performance Management
+  confidence: 0.8
+  evidence: GET /performance/metrics getPerformanceMetrics 'Retrieve network performance metrics'; schema
+    PerformanceMetrics; platform 'APIs enable network topology management, circuit provisioning, performance
+    monitoring'
+  reason: Carrier-grade SDN network management platform exposing network performance counters/KPIs — this
+    is telecom network performance management, not application observability. Single operation keeps confidence
+    short of certainty.
+- tag: Topology
+  spec_file: ciena-topology-api-openapi.yml
+  capability_id: BC-2600.40
+  capability_id_l1: BC-2600
+  capability_name: Network Inventory Management
+  confidence: 0.75
+  evidence: GET /topology/nodes listTopologyNodes 'List network topology nodes'; GET /topology/links listTopologyLinks;
+    schemas Node, Link, Port, Location
+  reason: Read-only record of network nodes, links, ports and locations for a carrier network management
+    system is the authoritative logical/physical resource inventory and its relationships.
+- tag: Services
+  spec_file: ciena-services-api-openapi.yml
+  capability_id: BC-2620.30
+  capability_id_l1: BC-2620
+  capability_name: Service Provisioning
+  confidence: 0.7
+  evidence: POST /services createService 'Create a new network service'; GET /services listServices 'List
+    provisioned network services'; schemas ServiceRequest, ServiceEndpoint
+  reason: Creating and listing provisioned network services on a carrier SDN orchestration platform (MEF
+    LSO Legato/Sonata) maps to telecom service fulfilment, specifically instantiation/provisioning of
+    services over network resources. Some ambiguity between provisioning and order decomposition.

@@ -172,6 +172,9 @@ apis:
   - type: Contact
     url: https://www.blueplanet.com/contact
 common:
+  - type: CapabilityMap
+    url: capabilities/ciena-capability-edges.yml
+    name: Ciena Business Capability Map
   - type: AgenticAccess
     url: agentic-access/ciena-agentic-access.yml
   - type: VulnerabilityDisclosure
