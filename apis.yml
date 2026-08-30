@@ -58,7 +58,6 @@ apis:
     Management System (NMS) platform. The MCP REST and RESTCONF APIs enable network-aware management operations
     for optical and packet networks including topology discovery, circuit provisioning, configuration
     management, and performance data retrieval.
-  image: https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/image.png
   humanURL: >-
     https://software.ciena.com/releasenotes/MCP-DOCS_5.2-217/build/site/mcp-docs/user-guide/Overview.html
   baseURL: https://api.ciena.com/mcp
@@ -78,7 +77,6 @@ apis:
     Ciena Emulation Cloud is an open application development environment enabling developers to create,
     test, and fine-tune custom applications against full API definitions without requiring physical infrastructure.
     Provides access to complete API documentation, tutorials, and sample code for Ciena network platforms.
-  image: https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/image.png
   humanURL: https://www.ciena.com/products/emulation-cloud
   baseURL: https://developer.ciena.com
   tags:
