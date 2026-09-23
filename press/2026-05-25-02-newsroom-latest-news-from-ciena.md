@@ -1,7 +1,9 @@
 ---
 title: Newsroom |Latest News from Ciena
 url: https://www.ciena.com/about/newsroom
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Ciena" press release artificial intelligence'
 position: 2
 source: serpapi-google

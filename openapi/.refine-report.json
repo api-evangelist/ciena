@@ -1,10 +1,7 @@
 {
   "provider": "ciena",
   "sources": [
-    "ciena-alarms-api-openapi.yml",
-    "ciena-performance-api-openapi.yml",
-    "ciena-services-api-openapi.yml",
-    "ciena-topology-api-openapi.yml"
+    "_original/ciena-blue-planet-openapi.yml"
   ],
   "outputs": [
     "ciena-alarms-api-openapi.yml",
@@ -15,6 +12,20 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "ciena-blue-planet-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "ciena-blue-planet-openapi.yml: tagged paths GET /services -> Services",
+    "ciena-blue-planet-openapi.yml: tagged paths POST /services -> Services",
+    "ciena-blue-planet-openapi.yml: tagged paths GET /services/{serviceId} -> Services",
+    "ciena-blue-planet-openapi.yml: tagged paths DELETE /services/{serviceId} -> Services",
+    "ciena-blue-planet-openapi.yml: declared missing tag: Services",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "ciena-alarms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ciena-performance-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ciena-services-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ciena-topology-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,7 +1,9 @@
 ---
 title: Press Releases
 url: https://www.blueplanet.com/about/press-releases
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Ciena" press release artificial intelligence'
 position: 3
 source: serpapi-google

@@ -1,7 +1,9 @@
 ---
 title: Ciena Solidifies AI Networking Leadership, Unveils New ...
 url: https://www.businesswire.com/news/home/20260310561860/en/Ciena-Solidifies-AI-Networking-Leadership-Unveils-New-Innovations-for-High-Speed-Connectivity
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Ciena" press release artificial intelligence'
 position: 5
 source: serpapi-google
