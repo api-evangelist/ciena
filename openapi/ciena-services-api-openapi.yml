@@ -117,6 +117,20 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    ServiceEndpoint:
+      type: object
+      properties:
+        nodeId:
+          type: string
+        portId:
+          type: string
+        vlanId:
+          type: integer
+        direction:
+          type: string
+          enum:
+          - A_END
+          - Z_END
     ServiceList:
       type: object
       properties:
@@ -126,6 +140,53 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ServiceSummary'
+    ServiceSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        serviceType:
+          type: string
+        state:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    ServiceRequest:
+      type: object
+      required:
+      - name
+      - serviceType
+      - endpoints
+      properties:
+        name:
+          type: string
+        serviceType:
+          type: string
+          enum:
+          - EPL
+          - EVPL
+          - OTN_ODU
+          - WDM_OCH
+        description:
+          type: string
+        bandwidth:
+          type: string
+          description: Requested bandwidth (e.g., 10G, 100G)
+        endpoints:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            $ref: '#/components/schemas/ServiceEndpoint'
+        protectionType:
+          type: string
+          enum:
+          - UNPROTECTED
+          - PROTECTED_1PLUS1
+          - REROUTABLE
     Error:
       type: object
       properties:
@@ -160,76 +221,15 @@ components:
           updatedAt:
             type: string
             format: date-time
-    ServiceSummary:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        serviceType:
-          type: string
-        state:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-    ServiceEndpoint:
-      type: object
-      properties:
-        nodeId:
-          type: string
-        portId:
-          type: string
-        vlanId:
-          type: integer
-        direction:
-          type: string
-          enum:
-          - A_END
-          - Z_END
-    ServiceRequest:
-      type: object
-      required:
-      - name
-      - serviceType
-      - endpoints
-      properties:
-        name:
-          type: string
-        serviceType:
-          type: string
-          enum:
-          - EPL
-          - EVPL
-          - OTN_ODU
-          - WDM_OCH
-        description:
-          type: string
-        bandwidth:
-          type: string
-          description: Requested bandwidth (e.g., 10G, 100G)
-        endpoints:
-          type: array
-          minItems: 2
-          maxItems: 2
-          items:
-            $ref: '#/components/schemas/ServiceEndpoint'
-        protectionType:
-          type: string
-          enum:
-          - UNPROTECTED
-          - PROTECTED_1PLUS1
-          - REROUTABLE
   responses:
-    BadRequest:
-      description: Invalid request parameters
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
+    BadRequest:
+      description: Invalid request parameters
       content:
         application/json:
           schema:

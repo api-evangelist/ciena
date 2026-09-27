@@ -44,6 +44,17 @@ tags:
   - Optical
   - RESTCONF
   - SDN
+  - Telecommunications
+  - TM Forum
+  - Fortune 1000
+tags_raw:
+  - MEF
+  - NETCONF
+  - Network Automation
+  - Network Management
+  - Optical
+  - RESTCONF
+  - SDN
   - Telecom
   - TM Forum
   - Fortune 1000
@@ -66,6 +77,12 @@ apis:
   - Network Management
   - RESTCONF
   - SDN
+  - Telecommunications
+  tags_raw:
+  - NETCONF
+  - Network Management
+  - RESTCONF
+  - SDN
   - Telecom
   properties:
   - type: Documentation
@@ -80,6 +97,11 @@ apis:
   humanURL: https://www.ciena.com/products/emulation-cloud
   baseURL: https://developer.ciena.com
   tags:
+  - Developer Tools
+  - SDN
+  - Telecommunications
+  - Testing
+  tags_raw:
   - Developer Tools
   - SDN
   - Telecom
