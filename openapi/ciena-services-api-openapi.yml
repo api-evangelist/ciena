@@ -131,6 +131,15 @@ components:
           enum:
           - A_END
           - Z_END
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
     ServiceList:
       type: object
       properties:
@@ -154,6 +163,31 @@ components:
         createdAt:
           type: string
           format: date-time
+    Service:
+      allOf:
+      - $ref: '#/components/schemas/ServiceSummary'
+      - type: object
+        properties:
+          description:
+            type: string
+          endpoints:
+            type: array
+            items:
+              $ref: '#/components/schemas/ServiceEndpoint'
+          bandwidth:
+            type: string
+          protectionType:
+            type: string
+            enum:
+            - UNPROTECTED
+            - PROTECTED_1PLUS1
+            - REROUTABLE
+          provisionedAt:
+            type: string
+            format: date-time
+          updatedAt:
+            type: string
+            format: date-time
     ServiceRequest:
       type: object
       required:
@@ -187,40 +221,6 @@ components:
           - UNPROTECTED
           - PROTECTED_1PLUS1
           - REROUTABLE
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: string
-    Service:
-      allOf:
-      - $ref: '#/components/schemas/ServiceSummary'
-      - type: object
-        properties:
-          description:
-            type: string
-          endpoints:
-            type: array
-            items:
-              $ref: '#/components/schemas/ServiceEndpoint'
-          bandwidth:
-            type: string
-          protectionType:
-            type: string
-            enum:
-            - UNPROTECTED
-            - PROTECTED_1PLUS1
-            - REROUTABLE
-          provisionedAt:
-            type: string
-            format: date-time
-          updatedAt:
-            type: string
-            format: date-time
   responses:
     NotFound:
       description: Resource not found

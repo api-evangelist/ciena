@@ -56,6 +56,15 @@ paths:
                 $ref: '#/components/schemas/AlarmList'
 components:
   schemas:
+    AlarmList:
+      type: object
+      properties:
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Alarm'
     Alarm:
       type: object
       properties:
@@ -85,15 +94,6 @@ components:
           format: date-time
         acknowledged:
           type: boolean
-    AlarmList:
-      type: object
-      properties:
-        total:
-          type: integer
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Alarm'
   securitySchemes:
     oauth2:
       type: oauth2
