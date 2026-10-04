@@ -123,24 +123,6 @@ paths:
                 $ref: '#/components/schemas/LinkList'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: string
-    LinkList:
-      type: object
-      properties:
-        total:
-          type: integer
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
     Link:
       type: object
       properties:
@@ -164,15 +146,6 @@ components:
           type: string
         capacity:
           type: string
-    NodeList:
-      type: object
-      properties:
-        total:
-          type: integer
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/NodeSummary'
     NodeSummary:
       type: object
       properties:
@@ -190,6 +163,46 @@ components:
           type: string
         ipAddress:
           type: string
+    LinkList:
+      type: object
+      properties:
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+    NodeList:
+      type: object
+      properties:
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/NodeSummary'
+    Location:
+      type: object
+      properties:
+        siteName:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        address:
+          type: string
     Port:
       type: object
       properties:
@@ -204,19 +217,6 @@ components:
         operState:
           type: string
         speed:
-          type: string
-    Location:
-      type: object
-      properties:
-        siteName:
-          type: string
-        latitude:
-          type: number
-          format: double
-        longitude:
-          type: number
-          format: double
-        address:
           type: string
     Node:
       allOf:
