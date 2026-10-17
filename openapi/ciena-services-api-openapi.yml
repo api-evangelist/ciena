@@ -116,30 +116,20 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    ServiceList:
-      type: object
-      properties:
-        total:
-          type: integer
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ServiceSummary'
-    ServiceEndpoint:
-      type: object
-      properties:
-        nodeId:
-          type: string
-        portId:
-          type: string
-        vlanId:
-          type: integer
-        direction:
-          type: string
-          enum:
-          - A_END
-          - Z_END
     ServiceSummary:
       type: object
       properties:
@@ -154,15 +144,45 @@ components:
         createdAt:
           type: string
           format: date-time
-    Error:
+    Service:
+      allOf:
+      - $ref: '#/components/schemas/ServiceSummary'
+      - type: object
+        properties:
+          description:
+            type: string
+          endpoints:
+            type: array
+            items:
+              $ref: '#/components/schemas/ServiceEndpoint'
+          bandwidth:
+            type: string
+          protectionType:
+            type: string
+            enum:
+            - UNPROTECTED
+            - PROTECTED_1PLUS1
+            - REROUTABLE
+          provisionedAt:
+            type: string
+            format: date-time
+          updatedAt:
+            type: string
+            format: date-time
+    ServiceEndpoint:
       type: object
       properties:
-        code:
+        nodeId:
           type: string
-        message:
+        portId:
           type: string
-        details:
+        vlanId:
+          type: integer
+        direction:
           type: string
+          enum:
+          - A_END
+          - Z_END
     ServiceRequest:
       type: object
       required:
@@ -196,44 +216,24 @@ components:
           - UNPROTECTED
           - PROTECTED_1PLUS1
           - REROUTABLE
-    Service:
-      allOf:
-      - $ref: '#/components/schemas/ServiceSummary'
-      - type: object
-        properties:
-          description:
-            type: string
-          endpoints:
-            type: array
-            items:
-              $ref: '#/components/schemas/ServiceEndpoint'
-          bandwidth:
-            type: string
-          protectionType:
-            type: string
-            enum:
-            - UNPROTECTED
-            - PROTECTED_1PLUS1
-            - REROUTABLE
-          provisionedAt:
-            type: string
-            format: date-time
-          updatedAt:
-            type: string
-            format: date-time
-  responses:
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    ServiceList:
+      type: object
+      properties:
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceSummary'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
   securitySchemes:
     oauth2:
       type: oauth2
