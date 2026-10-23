@@ -192,6 +192,8 @@ apis:
   - type: Contact
     url: https://www.blueplanet.com/contact
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/ciena/overview
   - type: Plans
     url: plans/ciena-plans-pricing.yml
   - type: RateLimits
