@@ -1,86 +1,202 @@
 {
+  "info": {
+    "_postman_id": "348e5e07-814d-4d88-bbbc-c241906a961a",
+    "name": "Ciena Blue Planet Open Topology API",
+    "description": "Ciena Blue Planet provides open APIs for multi-layer SDN network management and automation. The platform supports TM Forum Open APIs, MEF Lifecycle Service Orchestration (LSO) APIs including Legato and Sonata, and integrates with ONAP policy frameworks. APIs enable network topology management, circuit provisioning, performance monitoring, and network operations automation for telecom carriers.\n\nContact Support:\n Name: Blue Planet Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:09:12.000Z",
+    "updatedAt": "2026-10-22T03:09:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-348e5e07-814d-4d88-bbbc-c241906a961a"
+  },
   "item": [
     {
-      "id": "94f0a55b-15bd-40da-997a-e4a9a16fb35a",
-      "name": "Topology",
-      "description": {
-        "content": "Network topology resources including nodes and links",
-        "type": "text/plain"
-      },
+      "name": "topology",
       "item": [
         {
-          "id": "99dbd665-e584-41a5-8604-9fee5003ee5f",
-          "name": "List network topology nodes",
-          "request": {
-            "name": "List network topology nodes",
-            "description": {
-              "content": "Returns all network topology nodes (network elements) visible to the authenticated user. Supports filtering by node type, administrative state, and operational state.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "topology",
-                "nodes"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+          "name": "nodes",
+          "item": [
+            {
+              "name": "{nodeId}",
+              "item": [
                 {
-                  "disabled": false,
-                  "key": "type",
-                  "value": "<string>",
-                  "description": "Filter by node type"
-                },
-                {
-                  "disabled": false,
-                  "key": "adminState",
-                  "value": "<string>",
-                  "description": "Filter by administrative state"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "100"
-                },
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "0"
+                  "name": "Get a specific network topology node",
+                  "id": "9b64e458-8d66-40e9-b979-fb05af52f872",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/topology/nodes/:nodeId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "topology",
+                        "nodes",
+                        ":nodeId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4f4a5b39-0373-4eda-8399-b8d8e851336e",
+                          "key": "nodeId",
+                          "value": "<string>",
+                          "description": "(Required) Unique node identifier"
+                        }
+                      ]
+                    },
+                    "description": "Returns detailed information for a single network topology node including its ports and interfaces."
+                  },
+                  "response": [
+                    {
+                      "id": "28c77253-96b1-4e86-b075-fc0284f14557",
+                      "name": "Network topology node details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/topology/nodes/:nodeId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "topology",
+                            "nodes",
+                            ":nodeId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "nodeId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"adminState\": \"<string>\",\n  \"operState\": \"<string>\",\n  \"vendorName\": \"<string>\",\n  \"ipAddress\": \"<string>\",\n  \"softwareVersion\": \"<string>\",\n  \"location\": {\n    \"siteName\": \"<string>\",\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\",\n    \"address\": \"<string>\"\n  },\n  \"ports\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"adminState\": \"<string>\",\n      \"operState\": \"<string>\",\n      \"speed\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"adminState\": \"<string>\",\n      \"operState\": \"<string>\",\n      \"speed\": \"<string>\"\n    }\n  ],\n  \"managedBy\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T03:09:13.000Z",
+                      "updatedAt": "2026-10-22T03:09:13.000Z",
+                      "uid": "35240-28c77253-96b1-4e86-b075-fc0284f14557"
+                    },
+                    {
+                      "id": "4f8746f9-8996-4a5d-afd5-2f1dbcff56db",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/topology/nodes/:nodeId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "topology",
+                            "nodes",
+                            ":nodeId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "nodeId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T03:09:13.000Z",
+                      "updatedAt": "2026-10-22T03:09:13.000Z",
+                      "uid": "35240-4f8746f9-8996-4a5d-afd5-2f1dbcff56db"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T03:09:13.000Z",
+                  "updatedAt": "2026-10-22T03:09:13.000Z",
+                  "uid": "35240-9b64e458-8d66-40e9-b979-fb05af52f872"
                 }
               ],
-              "variable": []
+              "id": "61048f8c-dd68-4c18-8361-a332ec735127",
+              "createdAt": "2026-10-22T03:09:13.000Z",
+              "updatedAt": "2026-10-22T03:09:13.000Z",
+              "uid": "35240-61048f8c-dd68-4c18-8361-a332ec735127"
             },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
             {
-              "id": "49e690eb-2ef0-4917-b138-64fd23544e91",
-              "name": "List of topology nodes",
-              "originalRequest": {
+              "name": "List network topology nodes",
+              "id": "688af846-22f5-49bd-b70f-3ca0c84850ad",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/topology/nodes?type=optical&adminState=SHUTTING_DOWN&limit=100&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "topology",
                     "nodes"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "Filter by node type",
                       "key": "type",
-                      "value": "<string>"
+                      "value": "optical"
                     },
                     {
+                      "description": "Filter by administrative state",
                       "key": "adminState",
-                      "value": "<string>"
+                      "value": "SHUTTING_DOWN"
                     },
                     {
                       "key": "limit",
@@ -90,377 +206,269 @@
                       "key": "offset",
                       "value": "0"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"total\": 9576,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"adminState\": \"string\",\n      \"operState\": \"string\",\n      \"vendorName\": \"string\",\n      \"ipAddress\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"adminState\": \"string\",\n      \"operState\": \"string\",\n      \"vendorName\": \"string\",\n      \"ipAddress\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "d37ce896-2466-42c9-af63-de318c9b499f",
-              "name": "Authentication required",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "topology",
-                    "nodes"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "type",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "adminState",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "100"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7a4b67a0-bcb0-49ee-84ac-70408314156c",
-          "name": "Get a specific network topology node",
-          "request": {
-            "name": "Get a specific network topology node",
-            "description": {
-              "content": "Returns detailed information for a single network topology node including its ports and interfaces.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "topology",
-                "nodes",
-                ":nodeId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "nodeId",
-                  "description": "(Required) Unique node identifier"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "d8565adf-3da0-43b8-ad91-243bcfdeb3af",
-              "name": "Network topology node details",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "topology",
-                    "nodes",
-                    ":nodeId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "nodeId",
-                      "description": "(Required) Unique node identifier"
-                    }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
+                "description": "Returns all network topology nodes (network elements) visible to the authenticated user. Supports filtering by node type, administrative state, and operational state."
+              },
+              "response": [
+                {
+                  "id": "c607765d-e7fe-4ef9-ac35-ccbb898505c8",
+                  "name": "List of topology nodes",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/topology/nodes?type=optical&adminState=SHUTTING_DOWN&limit=100&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "topology",
+                        "nodes"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by node type",
+                          "key": "type",
+                          "value": "optical"
+                        },
+                        {
+                          "description": "Filter by administrative state",
+                          "key": "adminState",
+                          "value": "SHUTTING_DOWN"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ]
+                    }
                   },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"total\": \"<integer>\",\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"adminState\": \"<string>\",\n      \"operState\": \"<string>\",\n      \"vendorName\": \"<string>\",\n      \"ipAddress\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"adminState\": \"<string>\",\n      \"operState\": \"<string>\",\n      \"vendorName\": \"<string>\",\n      \"ipAddress\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T03:09:13.000Z",
+                  "updatedAt": "2026-10-22T03:09:13.000Z",
+                  "uid": "35240-c607765d-e7fe-4ef9-ac35-ccbb898505c8"
+                },
+                {
+                  "id": "14eb7668-9736-4683-97f1-cf0a012a3cc9",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/topology/nodes?type=optical&adminState=SHUTTING_DOWN&limit=100&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "topology",
+                        "nodes"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by node type",
+                          "key": "type",
+                          "value": "optical"
+                        },
+                        {
+                          "description": "Filter by administrative state",
+                          "key": "adminState",
+                          "value": "SHUTTING_DOWN"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T03:09:13.000Z",
+                  "updatedAt": "2026-10-22T03:09:13.000Z",
+                  "uid": "35240-14eb7668-9736-4683-97f1-cf0a012a3cc9"
+                }
+              ],
+              "createdAt": "2026-10-22T03:09:13.000Z",
+              "updatedAt": "2026-10-22T03:09:13.000Z",
+              "uid": "35240-688af846-22f5-49bd-b70f-3ca0c84850ad"
+            }
+          ],
+          "id": "115679f6-e74b-4e37-a5bc-94ca01d2463b",
+          "createdAt": "2026-10-22T03:09:13.000Z",
+          "updatedAt": "2026-10-22T03:09:13.000Z",
+          "uid": "35240-115679f6-e74b-4e37-a5bc-94ca01d2463b"
+        },
+        {
+          "name": "links",
+          "item": [
+            {
+              "name": "List network topology links",
+              "id": "d82e00f3-f210-4cc6-b55a-a3c6d9957f85",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"adminState\": \"string\",\n  \"operState\": \"string\",\n  \"vendorName\": \"string\",\n  \"ipAddress\": \"string\",\n  \"softwareVersion\": \"string\",\n  \"location\": {\n    \"siteName\": \"string\",\n    \"latitude\": 305.67984562199115,\n    \"longitude\": 3795.601608912199,\n    \"address\": \"string\"\n  },\n  \"ports\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"adminState\": \"string\",\n      \"operState\": \"string\",\n      \"speed\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"adminState\": \"string\",\n      \"operState\": \"string\",\n      \"speed\": \"string\"\n    }\n  ],\n  \"managedBy\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "65c6898b-4cd8-4c55-9fff-dc810ae4d5fb",
-              "name": "Resource not found",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "topology",
-                    "nodes",
-                    ":nodeId"
-                  ],
+                  "raw": "{{baseUrl}}/topology/links?nodeId=<string>&type=virtual&limit=100",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "nodeId",
-                      "description": "(Required) Unique node identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "61263ea9-54ea-4d8e-a2c1-d730d8f912ae",
-          "name": "List network topology links",
-          "request": {
-            "name": "List network topology links",
-            "description": {
-              "content": "Returns all network topology links (connections between nodes) visible to the authenticated user.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "topology",
-                "links"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "nodeId",
-                  "value": "<string>",
-                  "description": "Filter links connected to a specific node"
-                },
-                {
-                  "disabled": false,
-                  "key": "type",
-                  "value": "<string>",
-                  "description": "Filter by link type"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "100"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "dda9d019-a284-4ce9-bf2c-d72632e39b4d",
-              "name": "List of topology links",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "topology",
                     "links"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "Filter links connected to a specific node",
                       "key": "nodeId",
                       "value": "<string>"
                     },
                     {
+                      "description": "Filter by link type",
                       "key": "type",
-                      "value": "<string>"
+                      "value": "virtual"
                     },
                     {
                       "key": "limit",
                       "value": "100"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Returns all network topology links (connections between nodes) visible to the authenticated user."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "1712e7ab-636a-4199-afe3-857d6bfc046b",
+                  "name": "List of topology links",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/topology/links?nodeId=<string>&type=virtual&limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "topology",
+                        "links"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter links connected to a specific node",
+                          "key": "nodeId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by link type",
+                          "key": "type",
+                          "value": "virtual"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"total\": \"<integer>\",\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"aEndNode\": \"<string>\",\n      \"aEndPort\": \"<string>\",\n      \"zEndNode\": \"<string>\",\n      \"zEndPort\": \"<string>\",\n      \"adminState\": \"<string>\",\n      \"operState\": \"<string>\",\n      \"capacity\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"aEndNode\": \"<string>\",\n      \"aEndPort\": \"<string>\",\n      \"zEndNode\": \"<string>\",\n      \"zEndPort\": \"<string>\",\n      \"adminState\": \"<string>\",\n      \"operState\": \"<string>\",\n      \"capacity\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T03:09:13.000Z",
+                  "updatedAt": "2026-10-22T03:09:13.000Z",
+                  "uid": "35240-1712e7ab-636a-4199-afe3-857d6bfc046b"
                 }
               ],
-              "body": "{\n  \"total\": 3940,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"aEndNode\": \"string\",\n      \"aEndPort\": \"string\",\n      \"zEndNode\": \"string\",\n      \"zEndPort\": \"string\",\n      \"adminState\": \"string\",\n      \"operState\": \"string\",\n      \"capacity\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"aEndNode\": \"string\",\n      \"aEndPort\": \"string\",\n      \"zEndNode\": \"string\",\n      \"zEndPort\": \"string\",\n      \"adminState\": \"string\",\n      \"operState\": \"string\",\n      \"capacity\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T03:09:13.000Z",
+              "updatedAt": "2026-10-22T03:09:13.000Z",
+              "uid": "35240-d82e00f3-f210-4cc6-b55a-a3c6d9957f85"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "b973aec1-a885-4238-bf91-bf03e7a12859",
+          "createdAt": "2026-10-22T03:09:13.000Z",
+          "updatedAt": "2026-10-22T03:09:13.000Z",
+          "uid": "35240-b973aec1-a885-4238-bf91-bf03e7a12859"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.blueplanet.com/bpocore/market/api/v1",
-      "key": "baseUrl"
+      "id": "c272081c-fa8f-4bab-bd15-6575b754999d",
+      "createdAt": "2026-10-22T03:09:13.000Z",
+      "updatedAt": "2026-10-22T03:09:13.000Z",
+      "uid": "35240-c272081c-fa8f-4bab-bd15-6575b754999d"
     }
   ],
   "auth": {
@@ -468,25 +476,25 @@
     "oauth2": [
       {
         "key": "scope",
-        "value": "topology:read services:read services:write performance:read alarms:read"
+        "value": "topology:read services:read services:write performance:read alarms:read",
+        "type": "string"
       },
       {
         "key": "accessTokenUrl",
-        "value": "https://api.blueplanet.com/oauth/token"
+        "value": "https://api.blueplanet.com/oauth/token",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "client_credentials",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "a2c436db-7013-4582-b6e0-56d0d82a99a8",
-    "name": "Ciena Blue Planet Open Alarms Topology API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Ciena Blue Planet provides open APIs for multi-layer SDN network management and automation. The platform supports TM Forum Open APIs, MEF Lifecycle Service Orchestration (LSO) APIs including Legato and Sonata, and integrates with ONAP policy frameworks. APIs enable network topology management, circuit provisioning, performance monitoring, and network operations automation for telecom carriers.\n\nContact Support:\n Name: Blue Planet Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.blueplanet.com/bpocore/market/api/v1"
     }
-  }
+  ]
 }

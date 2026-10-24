@@ -1,155 +1,161 @@
 {
+  "info": {
+    "_postman_id": "71213eba-196a-4e02-89c7-1e76f467b425",
+    "name": "Ciena Blue Planet Open Performance API",
+    "description": "Ciena Blue Planet provides open APIs for multi-layer SDN network management and automation. The platform supports TM Forum Open APIs, MEF Lifecycle Service Orchestration (LSO) APIs including Legato and Sonata, and integrates with ONAP policy frameworks. APIs enable network topology management, circuit provisioning, performance monitoring, and network operations automation for telecom carriers.\n\nContact Support:\n Name: Blue Planet Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:08:58.000Z",
+    "updatedAt": "2026-10-22T03:08:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-71213eba-196a-4e02-89c7-1e76f467b425"
+  },
   "item": [
     {
-      "id": "83de1cf8-59fa-4ae1-98b3-b11938f25c97",
-      "name": "Performance",
-      "description": {
-        "content": "Performance monitoring and metrics",
-        "type": "text/plain"
-      },
+      "name": "performance",
       "item": [
         {
-          "id": "362e8027-e813-458e-8ff8-d8960369c887",
-          "name": "Retrieve network performance metrics",
-          "request": {
-            "name": "Retrieve network performance metrics",
-            "description": {
-              "content": "Returns performance monitoring data for network elements or services including OTN PM counters, Ethernet PM data, and optical performance parameters.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "performance",
-                "metrics"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "resourceId",
-                  "value": "<string>",
-                  "description": "(Required) ID of the network resource to query metrics for"
-                },
-                {
-                  "disabled": false,
-                  "key": "metricType",
-                  "value": "<string>",
-                  "description": "Type of performance metric"
-                },
-                {
-                  "disabled": false,
-                  "key": "granularity",
-                  "value": "15min",
-                  "description": "Data granularity period"
-                },
-                {
-                  "disabled": false,
-                  "key": "startTime",
-                  "value": "<dateTime>",
-                  "description": "Start of query window (ISO 8601)"
-                },
-                {
-                  "disabled": false,
-                  "key": "endTime",
-                  "value": "<dateTime>",
-                  "description": "End of query window (ISO 8601)"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "metrics",
+          "item": [
             {
-              "id": "3804b848-1842-485e-8162-fed13d581a00",
-              "name": "Performance metric data",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "performance",
-                    "metrics"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "resourceId",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "metricType",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "granularity",
-                      "value": "15min"
-                    },
-                    {
-                      "key": "startTime",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "endTime",
-                      "value": "<dateTime>"
-                    }
-                  ],
-                  "variable": []
-                },
+              "name": "Retrieve network performance metrics",
+              "id": "63c628ba-6966-4679-b75e-b80ff64cbba7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/performance/metrics?resourceId=<string>&metricType=ethernet&granularity=15min&startTime=<dateTime>&endTime=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "performance",
+                    "metrics"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ID of the network resource to query metrics for",
+                      "key": "resourceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Type of performance metric",
+                      "key": "metricType",
+                      "value": "ethernet"
+                    },
+                    {
+                      "description": "Data granularity period",
+                      "key": "granularity",
+                      "value": "15min"
+                    },
+                    {
+                      "description": "Start of query window (ISO 8601)",
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "End of query window (ISO 8601)",
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                },
+                "description": "Returns performance monitoring data for network elements or services including OTN PM counters, Ethernet PM data, and optical performance parameters."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "9b6d2508-2911-4e82-b384-1a9adf2d56f1",
+                  "name": "Performance metric data",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/performance/metrics?resourceId=<string>&metricType=ethernet&granularity=15min&startTime=<dateTime>&endTime=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "performance",
+                        "metrics"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ID of the network resource to query metrics for",
+                          "key": "resourceId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Type of performance metric",
+                          "key": "metricType",
+                          "value": "ethernet"
+                        },
+                        {
+                          "description": "Data granularity period",
+                          "key": "granularity",
+                          "value": "15min"
+                        },
+                        {
+                          "description": "Start of query window (ISO 8601)",
+                          "key": "startTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "End of query window (ISO 8601)",
+                          "key": "endTime",
+                          "value": "<dateTime>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"resourceId\": \"<string>\",\n  \"metricType\": \"<string>\",\n  \"granularity\": \"<string>\",\n  \"dataPoints\": [\n    {\n      \"timestamp\": \"<dateTime>\",\n      \"values\": {\n        \"in3\": \"<number>\",\n        \"cupidatat_37\": \"<number>\",\n        \"sitc4b\": \"<number>\"\n      }\n    },\n    {\n      \"timestamp\": \"<dateTime>\",\n      \"values\": {\n        \"nullae2b\": \"<number>\",\n        \"enim6\": \"<number>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T03:08:59.000Z",
+                  "updatedAt": "2026-10-22T03:08:59.000Z",
+                  "uid": "35240-9b6d2508-2911-4e82-b384-1a9adf2d56f1"
                 }
               ],
-              "body": "{\n  \"resourceId\": \"string\",\n  \"metricType\": \"string\",\n  \"granularity\": \"string\",\n  \"dataPoints\": [\n    {\n      \"timestamp\": \"1972-06-01T21:29:45.756Z\",\n      \"values\": {\n        \"key_0\": 6840.556668532356\n      }\n    },\n    {\n      \"timestamp\": \"1948-10-24T16:33:06.883Z\",\n      \"values\": {\n        \"key_0\": 9669.734476130676\n      }\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T03:08:58.000Z",
+              "updatedAt": "2026-10-22T03:08:58.000Z",
+              "uid": "35240-63c628ba-6966-4679-b75e-b80ff64cbba7"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "a92f9667-cf84-4225-a6b7-5cd5226ee8bf",
+          "createdAt": "2026-10-22T03:08:58.000Z",
+          "updatedAt": "2026-10-22T03:08:58.000Z",
+          "uid": "35240-a92f9667-cf84-4225-a6b7-5cd5226ee8bf"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.blueplanet.com/bpocore/market/api/v1",
-      "key": "baseUrl"
+      "id": "7d1acd7a-0603-469c-a22b-fa8aedcf1cf4",
+      "createdAt": "2026-10-22T03:08:58.000Z",
+      "updatedAt": "2026-10-22T03:08:58.000Z",
+      "uid": "35240-7d1acd7a-0603-469c-a22b-fa8aedcf1cf4"
     }
   ],
   "auth": {
@@ -157,25 +163,25 @@
     "oauth2": [
       {
         "key": "scope",
-        "value": "topology:read services:read services:write performance:read alarms:read"
+        "value": "topology:read services:read services:write performance:read alarms:read",
+        "type": "string"
       },
       {
         "key": "accessTokenUrl",
-        "value": "https://api.blueplanet.com/oauth/token"
+        "value": "https://api.blueplanet.com/oauth/token",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "client_credentials",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "a3c2ab7b-49fa-44f0-a12a-2ee3f7a49928",
-    "name": "Ciena Blue Planet Open Alarms Performance API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Ciena Blue Planet provides open APIs for multi-layer SDN network management and automation. The platform supports TM Forum Open APIs, MEF Lifecycle Service Orchestration (LSO) APIs including Legato and Sonata, and integrates with ONAP policy frameworks. APIs enable network topology management, circuit provisioning, performance monitoring, and network operations automation for telecom carriers.\n\nContact Support:\n Name: Blue Planet Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.blueplanet.com/bpocore/market/api/v1"
     }
-  }
+  ]
 }

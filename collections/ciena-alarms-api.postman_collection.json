@@ -1,77 +1,92 @@
 {
+  "info": {
+    "_postman_id": "e993c57a-52d0-4176-b534-655be34de8d2",
+    "name": "Ciena Blue Planet Open Alarms API",
+    "description": "Ciena Blue Planet provides open APIs for multi-layer SDN network management and automation. The platform supports TM Forum Open APIs, MEF Lifecycle Service Orchestration (LSO) APIs including Legato and Sonata, and integrates with ONAP policy frameworks. APIs enable network topology management, circuit provisioning, performance monitoring, and network operations automation for telecom carriers.\n\nContact Support:\n Name: Blue Planet Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:08:52.000Z",
+    "updatedAt": "2026-10-22T03:08:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e993c57a-52d0-4176-b534-655be34de8d2"
+  },
   "item": [
     {
-      "id": "a119fd6d-1da0-4051-b368-af1627cd0a1a",
-      "name": "Alarms",
-      "description": {
-        "content": "Network alarm and fault management",
-        "type": "text/plain"
-      },
+      "name": "alarms",
       "item": [
         {
-          "id": "6dfe96a1-a6e6-422c-b163-a8be8b4aea62",
           "name": "List network alarms",
+          "id": "79e0e2ca-2b7b-49a8-b942-c369cdf3d7cc",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "List network alarms",
-            "description": {
-              "content": "Returns active network alarms, faults, and conditions across all managed network elements.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "alarms"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "severity",
-                  "value": "<string>",
-                  "description": "Filter by alarm severity"
-                },
-                {
-                  "disabled": false,
-                  "key": "resourceId",
-                  "value": "<string>",
-                  "description": "Filter alarms for a specific resource"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "100"
-                }
-              ],
-              "variable": []
-            },
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/alarms?severity=CRITICAL&resourceId=<string>&limit=100",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "alarms"
+              ],
+              "query": [
+                {
+                  "description": "Filter by alarm severity",
+                  "key": "severity",
+                  "value": "CRITICAL"
+                },
+                {
+                  "description": "Filter alarms for a specific resource",
+                  "key": "resourceId",
+                  "value": "<string>"
+                },
+                {
+                  "key": "limit",
+                  "value": "100"
+                }
+              ]
+            },
+            "description": "Returns active network alarms, faults, and conditions across all managed network elements."
           },
           "response": [
             {
-              "id": "5ef8a8b1-b6c2-4114-ac9f-d0b8b6c04dfd",
+              "id": "0d3de673-c6fc-4fc2-a0a9-6efdfe05bebc",
               "name": "List of network alarms",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "alarms"
-                  ],
+                  "raw": "{{baseUrl}}/alarms?severity=CRITICAL&resourceId=<string>&limit=100",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "alarms"
+                  ],
                   "query": [
                     {
+                      "description": "Filter by alarm severity",
                       "key": "severity",
-                      "value": "<string>"
+                      "value": "CRITICAL"
                     },
                     {
+                      "description": "Filter alarms for a specific resource",
                       "key": "resourceId",
                       "value": "<string>"
                     },
@@ -79,54 +94,35 @@
                       "key": "limit",
                       "value": "100"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"total\": 7681,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"resourceId\": \"string\",\n      \"resourceType\": \"string\",\n      \"severity\": \"MINOR\",\n      \"alarmType\": \"string\",\n      \"description\": \"string\",\n      \"raisedAt\": \"2001-12-02T18:48:09.831Z\",\n      \"clearedAt\": \"1985-04-15T17:29:21.358Z\",\n      \"acknowledged\": true\n    },\n    {\n      \"id\": \"string\",\n      \"resourceId\": \"string\",\n      \"resourceType\": \"string\",\n      \"severity\": \"CRITICAL\",\n      \"alarmType\": \"string\",\n      \"description\": \"string\",\n      \"raisedAt\": \"1987-06-21T04:45:54.215Z\",\n      \"clearedAt\": \"1965-03-17T10:27:41.243Z\",\n      \"acknowledged\": false\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"total\": \"<integer>\",\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"resourceId\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"severity\": \"NOT_ALARMED\",\n      \"alarmType\": \"<string>\",\n      \"description\": \"<string>\",\n      \"raisedAt\": \"<dateTime>\",\n      \"clearedAt\": \"<dateTime>\",\n      \"acknowledged\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"resourceId\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"severity\": \"CRITICAL\",\n      \"alarmType\": \"<string>\",\n      \"description\": \"<string>\",\n      \"raisedAt\": \"<dateTime>\",\n      \"clearedAt\": \"<dateTime>\",\n      \"acknowledged\": \"<boolean>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T03:08:52.000Z",
+              "updatedAt": "2026-10-22T03:08:52.000Z",
+              "uid": "35240-0d3de673-c6fc-4fc2-a0a9-6efdfe05bebc"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T03:08:52.000Z",
+          "updatedAt": "2026-10-22T03:08:52.000Z",
+          "uid": "35240-79e0e2ca-2b7b-49a8-b942-c369cdf3d7cc"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.blueplanet.com/bpocore/market/api/v1",
-      "key": "baseUrl"
+      "id": "dd79b4ff-8bd3-4b99-ba25-99a437af1ee1",
+      "createdAt": "2026-10-22T03:08:52.000Z",
+      "updatedAt": "2026-10-22T03:08:52.000Z",
+      "uid": "35240-dd79b4ff-8bd3-4b99-ba25-99a437af1ee1"
     }
   ],
   "auth": {
@@ -134,25 +130,25 @@
     "oauth2": [
       {
         "key": "scope",
-        "value": "topology:read services:read services:write performance:read alarms:read"
+        "value": "topology:read services:read services:write performance:read alarms:read",
+        "type": "string"
       },
       {
         "key": "accessTokenUrl",
-        "value": "https://api.blueplanet.com/oauth/token"
+        "value": "https://api.blueplanet.com/oauth/token",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "client_credentials",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "d86dea18-e5ce-4a36-92a9-2e1e28a4b589",
-    "name": "Ciena Blue Planet Open Alarms API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Ciena Blue Planet provides open APIs for multi-layer SDN network management and automation. The platform supports TM Forum Open APIs, MEF Lifecycle Service Orchestration (LSO) APIs including Legato and Sonata, and integrates with ONAP policy frameworks. APIs enable network topology management, circuit provisioning, performance monitoring, and network operations automation for telecom carriers.\n\nContact Support:\n Name: Blue Planet Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.blueplanet.com/bpocore/market/api/v1"
     }
-  }
+  ]
 }
