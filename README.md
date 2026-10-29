@@ -1,4 +1,4 @@
-# Ciena (ciena)
+# Ciena
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,123 +66,152 @@
 
 Ciena Corporation is a global networking equipment, software, and services vendor focused on optical and packet networking, SDN, and service automation. This index covers Ciena's open APIs across the Blue Planet automation platform, the Ciena MCP (Manage, Control, and Plan) NMS, and the Emulation Cloud developer environment, exposing TM Forum Open APIs, MEF Lifecycle Service Orchestration (LSO) APIs (Legato, Sonata), and ONAP-aligned policy controls for telecom carriers and managed service providers.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/ciena/refs/heads/main/apis.yml)
+**Areas:** MEF · NETCONF · Network Automation · Network Management · Optical · RESTCONF · SDN · Telecommunications · TM Forum · Fortune 1000
 
-## Scope
+## Ciena on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Ciena is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/ciena/](https://apis.io/providers/ciena/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (6)
 
-- MEF
-- NETCONF
-- Network Automation
-- Network Management
-- Optical
-- RESTCONF
-- SDN
-- Telecom
-- TM Forum
+- [Ciena MCP (Manage, Control and Plan) API](https://apis.io/apis/ciena/mcp-api/) — Ciena's Manage, Control and Plan (MCP) is a multi-layer Software Defined Networking (SDN) and Network Management System (NMS) platform. The MCP REST and…
+- [Ciena Emulation Cloud API](https://apis.io/apis/ciena/emulation-cloud-api/) — Ciena Emulation Cloud is an open application development environment enabling developers to create, test, and fine-tune custom applications against full API…
+- [Ciena Alarms API](https://apis.io/apis/ciena/ciena-alarms-api/) — Network alarm and fault management
+- [Ciena Performance API](https://apis.io/apis/ciena/ciena-performance-api/) — Performance monitoring and metrics
+- [Ciena Services API](https://apis.io/apis/ciena/ciena-services-api/) — The Services API from Ciena — 2 operation(s) for services.
+- [Ciena Topology API](https://apis.io/apis/ciena/ciena-topology-api/) — Network topology resources including nodes and links
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-02-21
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Ciena Blue Planet Open API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Ciena Blue Planet provides open APIs for multi-layer SDN network management and automation. The platform supports TM Forum Open APIs, MEF Lifecycle Service Orchestration (LSO) APIs including Legato and Sonata, and integrates with ONAP policy frameworks. APIs enable network topology management, circuit provisioning, performance monitoring, and network operations automation for telecom carriers.
+- [Ciena Agentic Access](https://apis.io/agentic-access/ciena/ciena-agentic-access/)
 
-- **Human URL:** [https://www.blueplanet.com/technology/open-apis.html](https://www.blueplanet.com/technology/open-apis.html)
-- **Base URL:** `https://api.blueplanet.com/bpocore/market/api/v1`
+#### JSON Schema (1)
 
-#### Tags
+The data models the API reads and writes.
 
-- MEF
-- Network Automation
-- Optical
-- SDN
-- Telecom
-- TM Forum
+- [Ciena Blue Planet Network Service](https://apis.io/schemas/ciena/ciena-network-service/)
 
-#### Properties
+#### JSON-LD (1)
 
-- [Documentation](https://www.blueplanet.com/technology/open-apis.html)
-- [Portal](https://developer.blueplanet.com)
-- [Blog](https://www.blueplanet.com/blog)
-- [Support](https://www.blueplanet.com/support)
-- [Contact](https://www.blueplanet.com/contact)
-- [OpenAPI](openapi/ciena-blue-planet-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/ciena-blue-planet.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ciena-blue-planet.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Linked-data contexts for the provider's vocabulary.
 
-### Ciena MCP (Manage, Control and Plan) API
+- [Ciena Context](https://apis.io/jsonld/ciena/ciena-context/)
 
-Ciena's Manage, Control and Plan (MCP) is a multi-layer Software Defined Networking (SDN) and Network Management System (NMS) platform. The MCP REST and RESTCONF APIs enable network-aware management operations for optical and packet networks including topology discovery, circuit provisioning, configuration management, and performance data retrieval.
+#### Collections (5)
 
-- **Human URL:** [https://software.ciena.com/releasenotes/MCP-DOCS_5.2-217/build/site/mcp-docs/user-guide/Overview.html](https://software.ciena.com/releasenotes/MCP-DOCS_5.2-217/build/site/mcp-docs/user-guide/Overview.html)
-- **Base URL:** `https://api.ciena.com/mcp`
+Postman and Open Collection request collections.
 
-#### Tags
+- [Ciena Blue Planet Open Alarms API](https://apis.io/collections/ciena/open-ciena-alarms-api/)
+- [Ciena Blue Planet Open API](https://apis.io/collections/ciena/open-ciena-blue-planet/)
+- [Ciena Blue Planet Open Alarms Performance API](https://apis.io/collections/ciena/open-ciena-performance-api/)
+- [Ciena Blue Planet Open Alarms Services API](https://apis.io/collections/ciena/open-ciena-services-api/)
+- [Ciena Blue Planet Open Alarms Topology API](https://apis.io/collections/ciena/open-ciena-topology-api/)
 
-- NETCONF
-- Network Management
-- RESTCONF
-- SDN
-- Telecom
+#### Governance rules (1)
 
-#### Properties
+Spectral rulesets for the provider's contracts.
 
-- [Documentation](https://software.ciena.com/releasenotes/MCP-DOCS_5.2-217/build/site/mcp-docs/user-guide/Overview.html)
-- [Postman Collection](collections/ciena-blue-planet.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ciena-blue-planet.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Ciena — jsonschema rules](https://apis.io/rules/ciena/ciena-jsonschema-spectral-rules/)
 
-### Ciena Emulation Cloud API
+#### Security (3)
 
-Ciena Emulation Cloud is an open application development environment enabling developers to create, test, and fine-tune custom applications against full API definitions without requiring physical infrastructure. Provides access to complete API documentation, tutorials, and sample code for Ciena network platforms.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://www.ciena.com/products/emulation-cloud](https://www.ciena.com/products/emulation-cloud)
-- **Base URL:** `https://developer.ciena.com`
+- [Ciena Authentication](https://apis.io/security/ciena/ciena-authentication/)
+- [Ciena Domain Security](https://apis.io/security/ciena/ciena-domain-security/)
+- [Ciena Vulnerability Disclosure](https://apis.io/security/ciena/ciena-vulnerability-disclosure/)
 
-#### Tags
+#### OAuth scopes (1)
 
-- Developer Tools
-- SDN
-- Telecom
-- Testing
+The permissions the API asks for.
 
-#### Properties
+- [Ciena Scopes](https://apis.io/scopes/ciena/ciena-scopes/)
 
-- [Documentation](https://www.ciena.com/products/emulation-cloud)
-- [Portal](https://developer.ciena.com/)
-- [Postman Collection](collections/ciena-blue-planet.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ciena-blue-planet.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Plans and pricing (1)
 
-## Common Properties
+Published plans, tiers and prices.
 
-- [GitHub Organization](https://github.com/ciena)
-- [LinkedIn](https://www.linkedin.com/company/ciena)
+- [Ciena Plans Pricing](https://apis.io/plans/ciena/ciena-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Ciena Rate Limits](https://apis.io/rate-limits/ciena/ciena-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Ciena Finops](https://apis.io/finops/ciena/ciena-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.ciena.com/)
-- [Developer Portal](https://developer.ciena.com/)
-- [Portal](https://developer.blueplanet.com)
 - [Documentation](https://www.blueplanet.com/technology/open-apis.html)
-- [Blog](https://www.blueplanet.com/blog)
 - [Support](https://www.blueplanet.com/support)
-- [Privacy Policy](https://www.ciena.com/about/corporate-governance/privacy-policy)
-- [Terms of Service](https://www.ciena.com/customers/terms-and-conditions)
-- [Community](https://my.ciena.com/CienaPortal/s/blue-planet)
-- [Git Hub Org](https://git.blueplanet.com)
-- [OpenAPI](openapi/ciena-blue-planet-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [J S O N L D Context](json-ld/ciena-context.jsonld)
-- [JSON Schema](json-schema/ciena-network-service-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Spectral Rules](spectral/ciena-spectral.yml) — [Spectral](https://docs.stoplight.io/docs/spectral)
-- [L L Ms Txt](https://developer.ciena.com/llms.txt)
+- [Blog](https://www.blueplanet.com/blog)
+- [Terms of service](https://www.ciena.com/customers/terms-and-conditions)
+- [Privacy policy](https://www.ciena.com/about/corporate-governance/privacy-policy)
+- [GitHub](https://github.com/ciena)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 36.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 53.5 |
+| Contract governance | 9.8 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 28.6 |
+| Access clarity | 26.3 |
+
+**Agent readiness 20.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 40.0** — Telecommunications
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/ciena/](https://apis.io/providers/ciena/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Ciena: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/ciena/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
